@@ -13,9 +13,7 @@
 
     <!-- <base href="/"> -->
 
-<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-  <link rel="icon" type="image/png" href="../img/newyork.ico">
-    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -37,7 +35,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
-    
     <script src="js/app.js"></script>
 </head>
 
@@ -51,21 +48,21 @@
                 </small> -->
             </h1>
         </div>
+
         <div class="row">
             <div class="col-md-12 text-center">
-                <div class="authors">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
                     <a style="color:#000000;" href="https://www.csauthors.net/yuanbo-xiangli/">Yuanbo Xiangli*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="https://xingangpan.github.io/">Xingang Pan<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="http://nxzhao.com/">Nanxuan Zhao<sup>1,3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="color:#000000;" href="https://anyirao.com/">Anyi Rao<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://anyirao.com/">Anyi Rao<sup>1,5</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="http://daibo.info/">Bo Dai<sup>4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="http://dahua.me/">Dahua Lin<sup>1,3,5</sup></a>
                 </div>
-                </br>   
 
-                <div class="affiliations">
+                <div style="margin-bottom: 0.5em;" class="affiliations">
                     <a href="http://mmlab.ie.cuhk.edu.hk/">MMLab, The Chinese University of Hong Kong<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="https://www.mpi-inf.mpg.de/">Max Planck Institute for Informatics<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
                     </br>
@@ -74,18 +71,14 @@
                     <a href="https://www.shlab.org.cn/">Shanghai AI Laboratory<sup>5</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                 </div>
 
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    *denotes equal contribution
+                </div>
+
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12 text-center">
-                *denotes equal contribution
-            </div>
-        </div>
-
-
-
-        <div class="row">
+        <div style="margin-bottom: 0.7em;" class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <ul class="nav nav-pills nav-justified">
                         <li>
@@ -116,7 +109,54 @@
                 </div>
         </div>
 
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides">
+            <div class="numbertext">1 / 3</div>
+            <div class="col-md-8 col-md-offset-2">
+            <div class="text">Manhattan</div>
+            <video id="v0" width="100%" autoplay loop muted controls>
+                <source src="img/video2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            </div>
+        
+            <div class="mySlides">
+            <div class="numbertext">2 / 3</div>
+            <div class="col-md-8 col-md-offset-2">
+            <div class="text">Los Angeles</div>
+            <video id="v1" width="100%" autoplay loop muted controls>
+                <source src="img/Transamerica_citynerf_demo.mp4" type="video/mp4" />
+              </video>
+            </div>
+            </div>
+        
+            <div class="mySlides">
+            <div class="numbertext">3 / 3</div>
+            <div class="col-md-8 col-md-offset-2">
+            <div class="text">Seattle</div>
+            <video id="v2" width="100%" autoplay loop muted controls>
+                <source src="img/seattle_v2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            </div>
+        
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <br>
 
+        <!-- The dots/circles -->
+        <div class="dotDiv" style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+        
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
@@ -133,7 +173,7 @@
                 <h3>
                     Example Results
                 </h3>
-                <video id="v0" width="100%" autoplay loop muted controls>
+                <video id="v11" width="100%" autoplay loop muted controls>
                   <source src="img/56Leonard_2x2_demo.mp4" type="video/mp4" />
                 </video>
             </div>
@@ -199,4 +239,39 @@
         </div>
     </div>
 </body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
 </html>
