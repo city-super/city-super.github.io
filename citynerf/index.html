@@ -109,13 +109,39 @@
                 </div>
         </div>
 
+
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    Neural Radiance Field (NeRF) has achieved outstanding performance in modeling 3D objects and controlled scenes, usually under a single scale. In this work, we make the first attempt to bring NeRF to city-scale, with views ranging from satellite-level that captures the overview of a city, to ground-level imagery showing complex details of an architecture. The wide span of camera distance to the scene yields multi-scale data with different levels of detail and spatial coverage, which casts great challenges to vanilla NeRF and biases it towards compromised results. To address these issues, we introduce CityNeRF, a progressive learning paradigm that grows the NeRF model and training set synchronously. Starting from fitting distant views with a shallow base block, as training progresses, new blocks are appended to accommodate the emerging details in the increasingly closer views. The strategy effectively activates high-frequency channels in the positional encoding and unfolds more complex details as the training proceeds. We demonstrate the superiority of CityNeRF in modeling diverse city-scale scenes with drastically varying views, and its support for rendering views in different levels of detail.                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example Results
+                </h3>
+                <video id="v11" width="100%" autoplay loop muted controls>
+                  <source src="img/56Leonard_2x2_demo.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        
+        <br>
+        <br>
         <!-- Slideshow container -->
         <div class="slideshow-container">
             <!-- Full-width images with number and caption text -->
             <div class="mySlides">
             <div class="numbertext">1 / 3</div>
             <div class="col-md-8 col-md-offset-2">
-            <div class="text">Manhattan</div>
+            <div class="text">Earth-scale Manhattan</div>
             <video id="v0" width="100%" autoplay loop muted controls>
                 <source src="img/video2.mp4" type="video/mp4" />
               </video>
@@ -155,31 +181,6 @@
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
-
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Abstract
-                </h3>
-                <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
-                <p class="text-justify">
-                    Neural Radiance Field (NeRF) has achieved outstanding performance in modeling 3D objects and controlled scenes, usually under a single scale. In this work, we make the first attempt to bring NeRF to city-scale, with views ranging from satellite-level that captures the overview of a city, to ground-level imagery showing complex details of an architecture. The wide span of camera distance to the scene yields multi-scale data with different levels of detail and spatial coverage, which casts great challenges to vanilla NeRF and biases it towards compromised results. To address these issues, we introduce CityNeRF, a progressive learning paradigm that grows the NeRF model and training set synchronously. Starting from fitting distant views with a shallow base block, as training progresses, new blocks are appended to accommodate the emerging details in the increasingly closer views. The strategy effectively activates high-frequency channels in the positional encoding and unfolds more complex details as the training proceeds. We demonstrate the superiority of CityNeRF in modeling diverse city-scale scenes with drastically varying views, and its support for rendering views in different levels of detail.                </p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Example Results
-                </h3>
-                <video id="v11" width="100%" autoplay loop muted controls>
-                  <source src="img/56Leonard_2x2_demo.mp4" type="video/mp4" />
-                </video>
-            </div>
-        </div>
-            
-
 <!--         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
