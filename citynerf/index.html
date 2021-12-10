@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
-                    <a style="color:#000000;" href="https://www.csauthors.net/yuanbo-xiangli/">Yuanbo Xiangli*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Yuanbo Xiangli*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="https://xingangpan.github.io/">Xingang Pan<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a style="color:#000000;" href="http://nxzhao.com/">Nanxuan Zhao<sup>1,3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -83,26 +83,20 @@
                     <ul class="nav nav-pills nav-justified">
                         <li>
                             <a href="">
-                            <image src="../img/paper.png" height="80px"><br>
-                                <h4><strong>Paper</strong></h4>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                            <image src="../img/youtube_icon_dark.png" height="80px"><br>
-                                <h4><strong>Technical Video</strong></h4>
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>Paper</strong></h5>
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/city-super/citynerf">
-                            <image src="../img/github_pad.png" height="80px"><br>
-                                <h4><strong>Code (coming)</strong></h4>
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>Code (coming)</strong></h5>
                             </a>
                         </li>
                         <li>
                             <a href="">
-                            <image src="../img/paperclip.png" height="80px"><br>
-                                <h4><strong>Supplement</strong></h4>
+                            <image src="../img/paperclip.png" height="50px"><br>
+                                <h5><strong>Supplement</strong></h5>
                             </a>
                         </li>
                     </ul>
@@ -118,7 +112,28 @@
                 </h3>
                 <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    Neural Radiance Field (NeRF) has achieved outstanding performance in modeling 3D objects and controlled scenes, usually under a single scale. In this work, we make the first attempt to bring NeRF to city-scale, with views ranging from satellite-level that captures the overview of a city, to ground-level imagery showing complex details of an architecture. The wide span of camera distance to the scene yields multi-scale data with different levels of detail and spatial coverage, which casts great challenges to vanilla NeRF and biases it towards compromised results. To address these issues, we introduce CityNeRF, a progressive learning paradigm that grows the NeRF model and training set synchronously. Starting from fitting distant views with a shallow base block, as training progresses, new blocks are appended to accommodate the emerging details in the increasingly closer views. The strategy effectively activates high-frequency channels in the positional encoding and unfolds more complex details as the training proceeds. We demonstrate the superiority of CityNeRF in modeling diverse city-scale scenes with drastically varying views, and its support for rendering views in different levels of detail.                </p>
+                    Neural Radiance Field (NeRF) has achieved outstanding performance in modeling 3D objects and controlled scenes, usually under a single scale. In this work, we make the first attempt to bring NeRF to city-scale, with views ranging from satellite-level that captures the overview of a city, to ground-level imagery showing complex details of an architecture. The wide span of camera distance to the scene yields multi-scale data with different levels of detail and spatial coverage, which casts great challenges to vanilla NeRF and biases it towards compromised results. To address these issues, we introduce CityNeRF, a progressive learning paradigm that grows the NeRF model and training set synchronously. Starting from fitting distant views with a shallow base block, as training progresses, new blocks are appended to accommodate the emerging details in the increasingly closer views. The strategy effectively activates high-frequency channels in the positional encoding and unfolds more complex details as the training proceeds. We demonstrate the superiority of CityNeRF in modeling diverse city-scale scenes with drastically varying views, and its support for rendering views in different levels of detail.                
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Framework
+                </h3>
+                <image src="img/training_mechanism_residual_v9.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Overview of CityNeRF.</strong> (a) An illustration of the multi-scale data in city-scale scenes, where we use L ∈ { 1 , 2 , 3 , . . . , } to
+                        denote each scale. At each stage, our model grows in synchronization with the training set. (b) New residual blocks are appended to the
+                        network as the training proceeds, supervised by the union of samples from the most remote scale up to the current scale. The structure of a
+                        residual block is shown in the dashed box. (c) Level-of-detail rendering results obtained at different residual blocks. From shallow to deep,
+                        details are added bit by bit. (
+                        <a style="color:#000000;" href="https://www.google.com/help/terms_maps/">
+                        ©2021 Google
+                        </a>
+                        )
+                </p>
             </div>
         </div>
 
@@ -127,60 +142,67 @@
                 <h3>
                     Example Results
                 </h3>
-                <video id="v11" width="100%" autoplay loop muted controls>
-                  <source src="img/56Leonard_2x2_demo.mp4" type="video/mp4" />
-                </video>
+                <table>
+                    <tr>
+                    <td width="50%">
+                        <video id="v11" width="90%" autoplay loop muted controls>
+                            <source src="img/56Leonard_2x2_demo.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                    <td width="50%">
+                    <div class="slideshow-container">
+                        <!-- Full-width images with number and caption text -->
+                        <div class="mySlides">
+                        <div class="numbertext">1 / 3</div>
+                        <div class="col-md-12 col-md-offset-0">
+                        <div class="text" >Earth-scale Manhattan</div>
+                        <video id="v0" width="100%" loop muted controls>
+                            <source src="img/video2.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">2 / 3</div>
+                        <div class="col-md-12 col-md-offset-0">
+                        <div class="text">Los Angeles</div>
+                        <video id="v1" width="100%" autoplay loop muted controls>
+                            <source src="img/Transamerica_citynerf_demo.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">3 / 3</div>
+                        <div class="col-md-12 col-md-offset-0">
+                        <div class="text">Seattle</div>
+                        <video id="v2" width="100%" autoplay loop muted controls>
+                            <source src="img/seattle_v2.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        </div>
+                    
+                        <!-- Next and previous buttons -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <br>
+                    <br>
+            
+                    <!-- The dots/circles -->
+                    <!-- <div class="dotDiv" style="text-align:center">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div> -->
+                    </td>
+                </tr>
+                </table>                
             </div>
         </div>
-        
-        <br>
         <br>
         <!-- Slideshow container -->
-        <div class="slideshow-container">
-            <!-- Full-width images with number and caption text -->
-            <div class="mySlides">
-            <div class="numbertext">1 / 3</div>
-            <div class="col-md-8 col-md-offset-2">
-            <div class="text">Earth-scale Manhattan</div>
-            <video id="v0" width="100%" autoplay loop muted controls>
-                <source src="img/video2.mp4" type="video/mp4" />
-              </video>
-            </div>
-            </div>
-        
-            <div class="mySlides">
-            <div class="numbertext">2 / 3</div>
-            <div class="col-md-8 col-md-offset-2">
-            <div class="text">Los Angeles</div>
-            <video id="v1" width="100%" autoplay loop muted controls>
-                <source src="img/Transamerica_citynerf_demo.mp4" type="video/mp4" />
-              </video>
-            </div>
-            </div>
-        
-            <div class="mySlides">
-            <div class="numbertext">3 / 3</div>
-            <div class="col-md-8 col-md-offset-2">
-            <div class="text">Seattle</div>
-            <video id="v2" width="100%" autoplay loop muted controls>
-                <source src="img/seattle_v2.mp4" type="video/mp4" />
-              </video>
-            </div>
-            </div>
-        
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <br>
-        <br>
-
-        <!-- The dots/circles -->
-        <div class="dotDiv" style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
+       
 <!--         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
