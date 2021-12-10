@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>CityNeRF</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <link rel="icon" type="image/png" href="img/.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                CityNeRF: Building NeRF at City Scale
+                <!-- <small>
+                    CVPR 2022
+                </small> -->
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://www.csauthors.net/yuanbo-xiangli/">
+                            Yuanbo Xiangli*
+                        </a>
+                        </br>MMLab
+                    </li>
+                    <li>
+                        <a href="https://people.eecs.berkeley.edu/~pratul/">
+                          Linning Xu*
+                        </a>
+                        </br>CUHK
+                    </li>
+                    <li>
+                        <a href="https://xingangpan.github.io/">
+                          Xingang Pan
+                        </a>
+                        </br>MPI Informatik
+                    </li>
+                    <li>
+                        <a href="http://nxzhao.com/">
+                            Nanxuan Zhao
+                        </a>
+                        </br>CUHK
+                    </li>
+                    <li>
+                        <a href="https://anyirao.com/">
+                            Anyi Rao
+                        </a>
+                        </br>CUHK
+                    </li>
+                    <li>
+                        <a href="https://people.mpi-inf.mpg.de/~theobalt/">
+                            Christian Theobalt 
+                        </a>
+                        </br>MPI Informatik
+                    </li>
+                    <li>
+                        <a href="http://daibo.info/">
+                            Bo Dai
+                        </a>
+                        </br>NTU
+                    </li>
+                    <li>
+                        <a href="http://dahua.site/">
+                            Dahua Lin
+                        </a>
+                        </br>CUHK
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                *denotes equal contribution
+            </div>
+        </div>
+
+
+
+        <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="">
+                            <image src="../img/paper.png" height="80px"><br>
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <image src="../img/youtube_icon_dark.png" height="80px"><br>
+                                <h4><strong>Technical Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/city-super/citynerf">
+                            <image src="../img/github_pad.png" height="80px"><br>
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <image src="../img/paperclip.png" height="80px"><br>
+                                <h4><strong>Supplement</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example Results
+                </h3>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                  <source src="img/testgrid_all_3M.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+             -->
+
+<!--         <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Links
+                </h3>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    Neural Radiance Field (NeRF) has achieved outstanding performance in modeling 3D objects and controlled scenes, usually under a single scale. In this work, we make the first attempt to bring NeRF to city-scale, with views ranging from satellite-level that captures the overview of a city, to ground-level imagery showing complex details of an architecture. The wide span of camera distance to the scene yields multi-scale data with different levels of detail and spatial coverage, which casts great challenges to vanilla NeRF and biases it towards compromised results. To address these issues, we introduce CityNeRF, a progressive learning paradigm that grows the NeRF model and training set synchronously. Starting from fitting distant views with a shallow base block, as training progresses, new blocks are appended to accommodate the emerging details in the increasingly closer views. The strategy effectively activates high-frequency channels in the positional encoding and unfolds more complex details as the training proceeds. We demonstrate the superiority of CityNeRF in modeling diverse city-scale scenes with drastically varying views, and its support for rendering views in different levels of detail.                </p>
+            </div>
+        </div>
+        
+
+<!--         <div class="row" id="header_img">
+            <figure class="col-md-8 col-md-offset-2">
+                <image src="img/llff_teaser.png" class="img-responsive" alt="overview">
+                <figcaption>
+                </figcaption>
+            </figure>
+                
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Technical Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/LY6MgDUzS3M" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+
+@article{
+}
+</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
