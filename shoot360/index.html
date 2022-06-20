@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Shoot360</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                Shoot360: Normal View Video Creation from
+                <br>City Panoramafootage
+                <br>
+                <small>
+                    SIGGRAPH 2022
+                </small>
+            </h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="https://anyirao.com/">Anyi Rao</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://dahua.me/">Dahua Lin</a>
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="http://mmlab.ie.cuhk.edu.hk/">MMLab, The Chinese University of Hong Kong</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>Paper</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/city-super/shoot360">
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>Code (coming)</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <image src="../img/paperclip.png" height="50px"><br>
+                                <h5><strong>Supplement</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    We present Shoot360, a system that efficiently generates multi-shot
+                    normal view videos with desired content presentation and various cinematic styles, given a collection of 360 video recordings
+                    on different environments. The core of our system is a three-step
+                    decision process: 1) It firstly semantically analyzes the contents of
+                    interest from each panorama environment based on shot units, and
+                    produces a guidance that specifies the semantic focus and movement type of its output shot according to the user specification on
+                    content presentation and cinematic styles. 2) Based on the obtained
+                    guidance, it generates video candidates for each shot with shot-level
+                    control parameters for view projections following the filming rules.
+                    3) The system further aggregates the projected normal view shots
+                    with the imposed local and global constraints, which incorporates
+                    the external knowledge learned from exemplar videos and professional filming rules. Extensive experiments verify the effectiveness
+                    of our system design, and we conclude with promising extensions
+                    for applying it to more generalized scenarios.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Framework
+                </h3>
+                <image src="img/pipeline.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Overview of Shoot360.</strong>
+                    1) The system firstly analyzes the semantic elements (people , building , others)
+                    contained in the panorama shots and combines the user specifications on the overall content coverage, cinematic styles and
+                    video length to sample the instruction guidance (role of Director). 2) Each instruction determines the source panorama shot,
+                    semantic focus, and movement type of the corresponding normal view shot. The system then brings out candidate videos for
+                    each shot following the instructions (role of Videographer). 3) Finally, by jointly associating the learned criteria from exemplar
+                    videos and hand-crafted criteria from filming rules, it samples shots from the candidates and aggregates the final videos in a
+                    local-to-global way (role of Editor).
+                </p>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example Results
+                </h3>
+                <image src="img/result.png" class="img-responsive" alt="overview"><br>         
+                <p class="text-justify">
+                    <strong> Qualitative evaluations.</strong>
+                    Column 2-3: LayoutVAE and MolVAE fail to capture valid block topology, while our
+                    BlockPlanner efficiently generates diverse and valid block layouts with reasonable land use categories. Column 5-6: marker
+                    (L) indicates land use level view. Though pixel-based BlockGAN generates sensible structure for large lots, the artifacts such
+                    as the fuzzy boundary are significant. In contrast, our vectorized representation captures much more accurate geometry even
+                    in small areas. (Dimgray color indicates the unfilled regions.)
+                </p>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    3D Visualization and Animations
+                </h3>
+                <table>
+                    <tr>
+                    <td width="33%">
+                        <image src="img/supp.png" width=92% class="img-responsive" alt="overview"><br>  
+                    </td>
+                    <td width="32%">
+                        <video id="v11" width="100%" autoplay loop muted controls>
+                            <source src="img/block animation.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                    <td width="32%">
+                        <video id="v12" width="100%" autoplay loop muted controls>
+                            <source src="img/fun.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                    
+                </tr>
+                </table>                
+            </div>
+        </div> -->
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+
+@inproceedings{rao2022shoot360,
+    title={Shoot360: Normal View Video Creation from City Panoramafootage},
+    author={Rao, Anyi and Xu, Linning and Lin, Dahua},
+    booktitle={Special Interest Group on Computer Graphics and Interactive Techniques Conference Proceedings (SIGGRAPH'22)},
+    year={2022}
+}
+</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
+</html>
