@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>OmniNeRF</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                <!-- CityNeRF: Building NeRF at City Scale -->
+                Omnipotent City Understanding with <br> Multi-level and Multi-view Images
+            </h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="http://liweijia.github.io">Weijia Li<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Yawen Lai<sup>2,4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Yuanbo Xiangli<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Jinhua Yu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Conghui He<sup>4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://www.captain-whu.com/xia_En.html">Guisong Xia<sup>5</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://dahua.me/">Dahua Lin<sup>3,6</sup></a>
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="">Sun Yat-sen University<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="">Peking University<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+                    <a href="">The Chinese University of Hong Kong<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    </br>
+                    <a href="">Sensetime Research<sup>4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <a href="">Wuhan University <sup>5</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    <a href="">Shanghai Artificial Intelligence Laboratory<sup>6</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2208.00928">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>Paper (arxiv)</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <image src="../img/icon_dataset.png" height="50px"><br>
+                                <h5><strong>Data (soon) </strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>Code (soon) </strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="img/omnicity-teasor.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    This paper presents OmniCity, a new dataset for omnipotent city understanding from multi-level and multi-view images. More precisely, the OmniCity contains multi-view satellite images as well as street-level panorama and mono-view images, constituting over 100K pixel-wise annotated images that are well-aligned and collected from 25K geo-locations in New York City. To alleviate the substantial pixel-wise annotation efforts, we propose an efficient street-view image annotation pipeline that leverages the existing label maps of satellite view and the transformation relations between different views (satellite, panorama, and mono-view). With the new OmniCity dataset, we provide benchmarks for a variety of tasks including building footprint extraction, height estimation, and building plane/instance/fine-grained segmentation. We also analyze the impact of view on each task, the performance of different models, limitations of existing methods, etc. Compared with the existing multi-level and multi-view benchmarks, our OmniCity contains a larger number of images with richer annotation types and more views, provides more benchmark results obtained from state-of-the-art models, and introduces a novel task for fine-grained building instance segmentation on street-level panorama images. Moreover, OmniCity provides new problem settings for existing tasks, such as cross-view image matching, synthesis, segmentation, detection, etc., and facilitates the developing of new methods for large-scale city understanding, reconstruction, and simulation. The OmniCity dataset as well as the benchmarks will be released soon.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Comparison with Current Benchmarks
+                </h3>
+                <image src="img/omnicity-table.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    A comparison of our proposed dataset and existing city-related datasets. The # Images column represents the number of annotated images. The street view column shows whether the dataset contains no / mono-view (mono) / panorama (pano) street-level images. The satellite view column shows whether the dataset contains no / single / multiple satellite images. The annotation level column indicates which level of tasks the dataset is designed for, i.e., semantic segmentation, object detection (bbox), instance segmentation, plane segmentation, and image classification. The last two columns indicate whether the dataset contains fine-grained land use or height labels. Compared with the existing benchmarks, our OmniCity contains a larger number of images, more types of views, and richer annotation types at a finer annotation level.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Annotation Tool
+                </h3>
+                <image src="img/omnicity-gui.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    The annotator is first required to drag the floor line to fit the bottom boundary of all buildings. Next, the annotator needs to add the split line and adjust the top line to fit the roof boundary for each building plane. In the bottom-right sub-window, we provide auxiliary information indicating the approximate locations of the split lines, which is generated by transforming the building footprint split lines in the satellite view to panorama view using a geo-transformation method. The annotators should consider both auxiliary information and building appearance (e.g. texture discrepancy, doors, etc.) to decide the accurate location of each split line. During the attribute assignment stage, the annotator needs to add the attributes (instance ID, block-lot id and land use type) for each building plane labeled in the previous stage, which are demonstrated in the bottom-middle sub-window. The building planes that belong to the same building instance will be set as the same instance ID (in the crossroads scene); Otherwise, the plane will be set as a specific instance ID successively. When a building instance is selected by the annotator (the yellow one in the panorama image), the surrounding auxiliary lines of its corresponding footprint in the bottom-right sub-window will turn red. Then the annotators assign the lot-block id and the land use type according to the numbers shown in the bottom-right sub-window, which can be switched between the land use mode and the block-lot mode.    
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example Results
+                </h3>
+                <image src="img/omnicity-results.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    In this work, we provide a variety of benchmarks for multiple satellite and street-level tasks. The satellite-level tasks in our experiments include building footprint segmentation and height estimation. For both tasks, we conduct experiments on the satellite images with three view angles. For the street-level tasks, we conduct two instance segmentation tasks (i.e., land use and building instance segmentation) on the panorama images, and three instance segmentation tasks (i.e., land use / building instance / plane segmentation) on mono-view images. Please note that these are only preliminary experimental results on OmniCity dataset. More benchmarks of latest models and additional tasks will be continuously updated on OmniCity homepage.
+                </p>
+            </div>
+        </div>
+
+        <br>
+        <!-- Slideshow container -->
+       
+<!--         <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Links
+                </h3>
+            </div>
+        </div> -->
+
+        
+
+<!--         <div class="row" id="header_img">
+            <figure class="col-md-8 col-md-offset-2">
+                <image src="img/llff_teaser.png" class="img-responsive" alt="overview">
+                <figcaption>
+                </figcaption>
+            </figure>
+                
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Technical Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/LY6MgDUzS3M" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@inproceedings{xiangli2022bungeenerf,
+    title={BungeeNeRF: Progressive Neural Radiance Field for Extreme Multi-scale Scene Rendering},
+    author={Xiangli, Yuanbo and Xu, Linning and Pan, Xingang, and Zhao, Nanxuan and Rao, Anyi and Theobalt, Christian and Dai, Bo and Lin, Dahua},
+    booktitle = {The European Conference on Computer Vision (ECCV)}, 
+    year={2022}
+}
+</textarea>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div> -->
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
+</html>
