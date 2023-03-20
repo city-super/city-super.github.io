@@ -103,25 +103,25 @@
                 </h3>
                 <image src="./img/teaser.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    Both indoor and outdoor environments (e.g. restaurants
-                    and residential areas) are comprised of structured and
-                    repetitive components. Traditional modeling pipelines usually
-                    keep an asset library that stores template objects, where
-                    designers can constantly refer to and deploy their copies
-                    in the scene. Inspired by this observation, we present a
-                    novel neural scene representation system, namely Asset-
-                    Field, which is efficient and scalable by learning a set of
-                    object-centric ground feature planes, where an asset library
-                    can be automatically extracted. Unlike existing methods
-                    which require object masks to query the spatial points at
-                    inference time, our ground feature plane representation offers
-                    a natural visualization of the scene, on which a variety
-                    of operations (e.g. translation, deformation) can be performed
-                    to configure a new scene for rendering. Extensive experiments 
-                    demonstrate that our system not only achieves
-                    competitive performance for novel-view synthesis, but also
-                    produces realistic rendering for new scene configurations
-                    with a variety of object editing.             
+                    Both indoor and outdoor environments are inherently
+                    structured and repetitive. Traditional modeling pipelines
+                    keep an asset library storing unique object templates, which
+                    is both versatile and memory efficient in practice. Inspired
+                    by this observation, we propose AssetField, a novel neural
+                    scene representation that learns a set of object-aware
+                    ground feature planes to represent the scene, where an asset
+                    library storing template feature patches can be constructed
+                    in an unsupervised manner. Unlike existing methods which
+                    require object masks to query spatial points for object editing,
+                    our ground feature plane representation offers a natural
+                    visualization of the scene in the bird-eye view, allowing
+                    a variety of operations (e.g. translation, duplication, deformation)
+                    on objects to configure a new scene. With the template
+                    feature patches, group editing is enabled for scenes
+                    with many recurring items to avoid repetitive work on object
+                    individuals. We show that AssetField not only achieves
+                    competitive performance for novel-view synthesis but also
+                    generates realistic renderings for new scene configurations.     
                 </p>
             </div>
         </div>
@@ -133,11 +133,19 @@
                 </h3>
                 <image src="./img/pipeline.png" class="img-responsive" alt="overview"><br>
                 <p class="text-justify">
-                    <strong> Overview of AssetField.</strong> The blue box<span style="background-color: #cfe2f3a8">(b)</span> and orange box<span style="background-color: #fce5cdb3">(c-d)</span> show the pipeline of Basic and Improved AssetField respectively.
+                    <strong> Overview of AssetField.</strong> 
+                    (a) We demonstrate on a scene without background for clearer visuals. (b) The proposed ground
+                    feature plane representation factorizes a neural field into a horizontal feature plane and a vertical feature axis. (c) We further integrate
+                    color and semantic field into a 2D neural plane, which is decoded into 3D-aware features with the geometry guidance from scene density.
+                    The inferred RGB-DINO plane is rich in object appearance and semantic clues whilst being less sensitive to vertical displacement between
+                    objects, on which we can (d) detect assets and grouping them into categories. (e) For each category, we select a template object and store
+                    its density and color ground feature patches into the asset library. A cross-scene asset library can be construct by letting different scenes fit
+                    there own ground feature planes whilst sharing the same vertical feature axes and decoders/renderers.
+                    <!-- The blue box<span style="background-color: #cfe2f3a8">(b)</span> and orange box<span style="background-color: #fce5cdb3">(c-d)</span> show the pipeline of Basic and Improved AssetField respectively.
                     Basic AssetField models a set of separate density and RGB (optionally DINO) fields. Improved AssetField unifies color and semantic field
                     into RGB-DINO ground feature plane that is decoded into 3D with geometry guidance from density occupancy. This further encourages
                     learning an object-centric RGB-DINO plane that is suitable for <span style="background-color: #d9d2e9a8">(e)</span> asset mining and layout discovery. The extracted category template
-                    from the asset and layout discovery procedure is then added to the maintained asset library for future usage.
+                    from the asset and layout discovery procedure is then added to the maintained asset library for future usage. -->
                 </p>
             </div>
         </div>
@@ -145,7 +153,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Example Results
+                    Example Results on Synthetic Scenes
                 </h3>
                     <h4>
                         # Delete Instances
@@ -165,8 +173,8 @@
                     <image src="./img/results-rot&del.png" class="img-responsive" alt="overview">
                     <br>
                     <p class="text-justify">
-                        <strong> Results of asset mining and scene editing with Improved AssetField.</strong>
-                        <span style="background-color: #fce5cdb3">(a)</span> Our approach learns informative density and RGBDINO
+                        <strong> Results of asset mining and scene editing with AssetField.</strong>
+                        <span style="background-color: #fce5cdb3">(a)</span> Our approach learns informative density and RGB-DINO
                         ground feature planes that support object detection and categorization. <span style="background-color: #d9ead3a8">(b)</span> With joint training, an asset library can be constructed
                         by storing ground feature plane patches of the radiance field (we show label patches here for easy visualization). <span style="background-color: #cfe2f3a8">(c)</span> The proposed ground
                         plane representation provides an explicit visualization of the scene configuration, which be directly manipulated by users. The altered
@@ -179,26 +187,116 @@
                 </h3>
                 <table>
                     <tr>
-                    <td width="30%">
-                        <video id="v11" width="100%" autoplay loop muted controls>
-                            <source src="img/move.mp4" type="video/mp4" />
-                        </video>
-                    </td>
-                    <td width="30%">
-                        <video id="v12" width="100%" autoplay loop muted controls>
-                            <source src="img/change_appearance.mp4" type="video/mp4" />
-                        </video>
-                    </td>
-                    <td width="30%">
-                        <video id="v12" width="100%" autoplay loop muted controls>
-                            <source src="img/reconfig_room.mp4" type="video/mp4" />
-                        </video>
-                    </td>
-                </tr>
+                        <td width="30%">
+                            <video id="v11" width="100%" autoplay loop muted controls>
+                                <source src="img/move.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="30%">
+                            <video id="v12" width="100%" autoplay loop muted controls>
+                                <source src="img/change_appearance.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="30%">
+                            <video id="v12" width="100%" autoplay loop muted controls>
+                                <source src="img/reconfig_room.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                </table>                
+            </div>
+
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example Results on Real-world Scenes
+                </h3>
+                    <image src="./img/realscenes.png" class="img-responsive" alt="overview">
+                    <p class="text-justify">
+                        <strong> Example editings on Mip-NeRF360 and DoNeRF dataset.</strong>
+                        Objects are identified on the RGB-DINO plane then replicated in the scene.
+                    </p>
+                    <br>
+                    <image src="./img/toydesk_remove.png" class="img-responsive" alt="overview">
+                    <p class="text-justify">
+                        <strong> Object removal on toydesk scene from ObjectNeRF.</strong>
+                        Objects are first identified on each ground feature plane then substituted by the table
+                        feature patches. We simply ‘crop’ a feature patch from the table
+                        region and ‘paste’ it on to the object regions. Note that our method
+                        can also remove the shadow along with the object, whereas Object-
+                        NeRF cannot and leaves a black hole on the table-top.
+                    </p>
+                    <br>
+                    <image src="./img/vertical_toydesk.png" class="img-responsive" alt="overview">
+                    <p class="text-justify">
+                        <strong> Cross-scene object insertion.</strong>
+                        We insert the plastic bowl from toydesk1 to toydesk2. 
+                        Vertical translation of the bowl is realized by jointly
+                        modeling the aligned/lifted/sunken-toydesk1 with toydesk2 and
+                        compose the new scene with feature patches inferred at different
+                        scene elevation.
+                    </p>
+
+                <h3>
+                    More results
+                </h3>
+                <table>
+                    <tr>
+                        <td width="100%">
+                            <video id="v11" width="100%" autoplay loop muted controls>
+                                <source src="img/garden_added_ball.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="100%">
+                            <video id="v12" width="100%" autoplay loop muted controls>
+                                <source src="img/toydesk.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
                 </table>                
             </div>
         </div>
         <br>
+
+
+        <div class="col-md-8 col-md-offset-2">
+            <h3>
+                Example Results on City Scenes (Google Earth)
+            </h3>
+                <image src="./img/cityscene.png" class="img-responsive" alt="overview">
+                <p class="text-justify">
+                    <strong> Example editings on Mip-NeRF360 and DoNeRF dataset.</strong>
+                    Objects are identified on the RGB-DINO plane then replicated in the scene.
+                </p>
+            <table>
+                <tr>
+                    <td width="50%">
+                        <video id="v11" width="100%" autoplay loop muted controls>
+                            <source src="img/original_Colosseum_SagradaFamilia.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                    <td width="50%">
+                        <video id="v12" width="100%" autoplay loop muted controls>
+                            <source src="img/composed.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                </tr>
+            </table>     
+            <p class="text-justify">
+                <strong>Editing two city scenes collected from Google Earth ©2023 Google. </strong> 
+                AssetField is versatile where users can directly
+                operate on the ground feature plane, supporting both withinscene
+                and cross-scene editing with realistic rendering results.
+                <strong>Left: </strong>
+                Novel view rendering of the original Colosseum and Sagrada Familia scene.
+                <strong>Right: </strong>
+                Two Colosseums of different sizes are into a park scene; Colosseum and Sangrada Familia are inserted into a park scene.
+            </p>           
+        </div>
+    </div>
+    <br>
         <!-- Slideshow container -->
        
 <!--         <div class="row">
