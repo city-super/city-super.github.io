@@ -181,10 +181,6 @@
                         ground feature plane is then fed to the global MLP renderer along with the shared z-axis feature to render views of the novel scenes. Basic
                         operations such as object removal, translation, rotation and rescaling are demonstrated on the right.
                     </p>
-
-                <h3>
-                    More results
-                </h3>
                 <table>
                     <tr>
                         <td width="30%">
@@ -205,71 +201,64 @@
                     </tr>
                 </table>                
             </div>
-
+            <br>
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Example Results on Real-world Scenes
                 </h3>
                     <image src="./img/realscenes.png" class="img-responsive" alt="overview">
+                    <table>
+                        <tr>
+                            <td width="100%">
+                                <video id="v11" width="100%" autoplay loop muted controls>
+                                    <source src="img/garden_added_ball.mp4" type="video/mp4" />
+                                </video>
+                            </td>
+                        </tr>
+                    </table>
                     <p class="text-justify">
                         <strong> Example editings on Mip-NeRF360 and DoNeRF dataset.</strong>
                         Objects are identified on the RGB-DINO plane then replicated in the scene.
+                        <strong>Video left: </strong> Novel view rendering of the original scene;
+                        <strong>Video right: </strong> We replicate the metal ball in the back.
                     </p>
                     <br>
                     <image src="./img/toydesk_remove.png" class="img-responsive" alt="overview">
+                    <table>
+                        <tr>
+                            <td width="100%">
+                                <video id="v12" width="100%" autoplay loop muted controls>
+                                    <source src="img/toydesk.mp4" type="video/mp4" />
+                                </video>
+                            </td>
+                        </tr>
+                    </table>     
                     <p class="text-justify">
                         <strong> Object removal on toydesk scene from ObjectNeRF.</strong>
                         Objects are first identified on each ground feature plane then substituted by the table
                         feature patches. We simply ‘crop’ a feature patch from the table
                         region and ‘paste’ it on to the object regions. Note that our method
-                        can also remove the shadow along with the object, whereas Object-
-                        NeRF cannot and leaves a black hole on the table-top.
+                        can also remove the shadow along with the object, whereas Object-NeRF 
+                        cannot and leaves a <span style="border-top:3px#FF0000 solid;border-bottom:3px#FF0000 solid;border-left:3px#FF0000 solid;border-right:3px#FF0000 solid;">black hole</span>.
                     </p>
                     <br>
                     <image src="./img/vertical_toydesk.png" class="img-responsive" alt="overview">
                     <p class="text-justify">
                         <strong> Cross-scene object insertion.</strong>
                         We insert the plastic bowl from toydesk1 to toydesk2. 
-                        Vertical translation of the bowl is realized by jointly
-                        modeling the aligned/lifted/sunken-toydesk1 with toydesk2 and
+                        <strong>Vertical translation</strong> of the bowl is realized by jointly
+                        modeling the aligned/lifted/sunken-toydesk1 with toydesk2, and
                         compose the new scene with feature patches inferred at different
                         scene elevation.
-                    </p>
-
-                <h3>
-                    More results
-                </h3>
-                <table>
-                    <tr>
-                        <td width="100%">
-                            <video id="v11" width="100%" autoplay loop muted controls>
-                                <source src="img/garden_added_ball.mp4" type="video/mp4" />
-                            </video>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td width="100%">
-                            <video id="v12" width="100%" autoplay loop muted controls>
-                                <source src="img/toydesk.mp4" type="video/mp4" />
-                            </video>
-                        </td>
-                    </tr>
-                </table>                
+                    </p>           
             </div>
         </div>
         <br>
-
-
         <div class="col-md-8 col-md-offset-2">
             <h3>
                 Example Results on City Scenes (Google Earth)
             </h3>
-                <image src="./img/cityscene.png" class="img-responsive" alt="overview">
-                <p class="text-justify">
-                    <strong> Example editings on Mip-NeRF360 and DoNeRF dataset.</strong>
-                    Objects are identified on the RGB-DINO plane then replicated in the scene.
-                </p>
+            <image src="./img/cityscene.png" class="img-responsive" alt="overview">
             <table>
                 <tr>
                     <td width="50%">
@@ -287,12 +276,12 @@
             <p class="text-justify">
                 <strong>Editing two city scenes collected from Google Earth ©2023 Google. </strong> 
                 AssetField is versatile where users can directly
-                operate on the ground feature plane, supporting both withinscene
-                and cross-scene editing with realistic rendering results.
+                operate on the ground feature plane, supporting both within-scene
+                and cross-scene editing, producing realistic rendering results.
                 <strong>Left: </strong>
-                Novel view rendering of the original Colosseum and Sagrada Familia scene.
+                Novel view rendering of the original Colosseum (Rome) and Sagrada Familia (Barcelona) scene.
                 <strong>Right: </strong>
-                Two Colosseums of different sizes are into a park scene; Colosseum and Sangrada Familia are inserted into a park scene.
+                Two Colosseum of different sizes are inserted into a park scene; Colosseum and Sangrada Familia are inserted into a park scene.
             </p>           
         </div>
     </div>
