@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>MatrixCity</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                MatrixCity: A Large-scale City Dataset <br> for City-scale Neural Rendering and Beyond
+            </h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="https://yixuanli98.github.io/">Yixuan Li*<sup>1,2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://jianglh-whu.github.io/">Lihan Jiang*<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://kam1107.github.io/">Yuanbo Xiangli<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://zhenzhiwang.github.io/">Zhenzhi Wang<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://dahua.me/">Dahua Lin<sup>1,2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://daibo.info/">Bo Dai<sup>2</sup></a>
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="http://mmlab.ie.cuhk.edu.hk/">The Chinese University of Hong Kong<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Laboratory<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                </div>
+
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    *denotes equal contribution
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <!-- <a href="../img/github_pad.png"> -->
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>Paper (coming soon)</strong></h5>
+                            </a>
+                        </li>
+
+                        <li>
+                            <!-- <a href="../img/github_pad.png"> -->
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>ICCV2023 (coming soon)</strong></h5>
+                            </a>
+                        </li>
+
+                        <li>
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>Code (coming soon)</strong></h5>
+                            </a>
+                        </li>
+
+                        <li>
+                            <!-- <a href="../img/github_pad.png"> -->
+                            <image src="../img/paperclip.png" height="50px"><br>
+                                <h5><strong>Supplement</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="./img/teaser.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    Neural radiance fields (NeRF) and its subsequent variants have led to remarkable progress in neural rendering.
+                    While most of recent neural rendering works focus on objects and small-scale scenes, developing neural rendering 
+                    methods for city-scale scenes is of great potential in many real-world applications. However, this line of 
+                    research is impeded by the absence of a comprehensive and high-quality dataset, 
+                    yet collecting such a dataset over real city-scale scenes is costly, sensitive, and technically infeasible.   
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Our Excellent MatrixCity Dataset!
+                </h3>
+                <!-- <image src="./img/cityscene.png" class="img-responsive" alt="overview">
+                <table>
+                    <tr>
+                        <td width="50%">
+                            <video id="v11" width="100%" autoplay loop muted controls>
+                                <source src="img/original_Colosseum_SagradaFamilia.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="50%">
+                            <video id="v12" width="100%" autoplay loop muted controls>
+                                <source src="img/composed.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                </table>      -->
+                <!-- <p class="text-justify">
+                    <strong>Editing two city scenes collected from Google Earth ©2023 Google. </strong> 
+                    AssetField is versatile where users can directly
+                    operate on the ground feature plane, supporting both within-scene
+                    and cross-scene editing, producing realistic rendering results.
+                    <strong>Left: </strong>
+                    Novel view rendering of the original Colosseum (Rome) and Sagrada Familia (Barcelona) scene.
+                    <strong>Right: </strong>
+                    Two Colosseum of different sizes are inserted into a park scene; Colosseum and Sangrada Familia are inserted into a park scene.
+                </p>     -->
+            </div>       
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Comparison with Current Datasets
+                </h3>
+                <!-- <image src="./img/pipeline.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Overview of AssetField.</strong> 
+                    (a) We demonstrate on a scene without background for clearer visuals. (b) The proposed ground
+                    feature plane representation factorizes a neural field into a horizontal feature plane and a vertical feature axis. (c) We further integrate
+                    color and semantic field into a 2D neural plane, which is decoded into 3D-aware features with the geometry guidance from scene density.
+                    The inferred RGB-DINO plane is rich in object appearance and semantic clues whilst being less sensitive to vertical displacement between
+                    objects, on which we can (d) detect assets and grouping them into categories. (e) For each category, we select a template object and store
+                    its density and color ground feature patches into the asset library. A cross-scene asset library can be construct by letting different scenes fit
+                    there own ground feature planes whilst sharing the same vertical feature axes and decoders/renderers.
+                    The blue box<span style="background-color: #cfe2f3a8">(b)</span> and orange box<span style="background-color: #fce5cdb3">(c-d)</span> show the pipeline of Basic and Improved AssetField respectively.
+                    Basic AssetField models a set of separate density and RGB (optionally DINO) fields. Improved AssetField unifies color and semantic field
+                    into RGB-DINO ground feature plane that is decoded into 3D with geometry guidance from density occupancy. This further encourages
+                    learning an object-centric RGB-DINO plane that is suitable for <span style="background-color: #d9d2e9a8">(e)</span> asset mining and layout discovery. The extracted category template
+                    from the asset and layout discovery procedure is then added to the maintained asset library for future usage. -->
+                <!-- </p> -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Data Collection Method
+                </h3>
+                <image src="./img/pipeline.png" class="img-responsive" alt="overview"><br>
+                <!-- <p class="text-justify">
+                    <strong> Overview of AssetField.</strong> 
+                    (a) We demonstrate on a scene without background for clearer visuals. (b) The proposed ground
+                    feature plane representation factorizes a neural field into a horizontal feature plane and a vertical feature axis. (c) We further integrate
+                    color and semantic field into a 2D neural plane, which is decoded into 3D-aware features with the geometry guidance from scene density.
+                    The inferred RGB-DINO plane is rich in object appearance and semantic clues whilst being less sensitive to vertical displacement between
+                    objects, on which we can (d) detect assets and grouping them into categories. (e) For each category, we select a template object and store
+                    its density and color ground feature patches into the asset library. A cross-scene asset library can be construct by letting different scenes fit
+                    there own ground feature planes whilst sharing the same vertical feature axes and decoders/renderers.
+                    The blue box<span style="background-color: #cfe2f3a8">(b)</span> and orange box<span style="background-color: #fce5cdb3">(c-d)</span> show the pipeline of Basic and Improved AssetField respectively.
+                    Basic AssetField models a set of separate density and RGB (optionally DINO) fields. Improved AssetField unifies color and semantic field
+                    into RGB-DINO ground feature plane that is decoded into 3D with geometry guidance from density occupancy. This further encourages
+                    learning an object-centric RGB-DINO plane that is suitable for <span style="background-color: #d9d2e9a8">(e)</span> asset mining and layout discovery. The extracted category template
+                    from the asset and layout discovery procedure is then added to the maintained asset library for future usage. -->
+                <!-- </p> -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Other Examples
+                </h3>
+                <image src="./img/illumination_fog.png" class="img-responsive" alt="overview"></image>
+                <p class="text-justify">
+                    Illustration of controlling dynamic environment factors in Unreal Engine 5 such as illumination (a), fog density (b) and decomposed reflectance (c) 
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Benchmark
+                </h3>
+                <!-- <image src="./img/illumination_fog.png" class="img-responsive" alt="overview"></image>
+                <p class="text-justify">
+                    Illustration of controlling dynamic environment factors in Unreal Engine 5 such as illumination (a), fog density (b) and decomposed reflectance (c) 
+                </p> -->
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+<!-- @article{li2022omnicity,
+    title={OmniCity: Omnipotent City Understanding with Multi-level and Multi-view Images},
+    author={Li, Weijia and Lai, Yawen and Xu, Linning and Xiangli, Yuanbo and Yu, Jinhua and He, Conghui and Xia, Gui-Song and Lin, Dahua},
+    journal={arXiv e-prints},
+    pages={arXiv--2208},
+    year={2022}
+    } -->
+</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div> -->
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
+</html>
