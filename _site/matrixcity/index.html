@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>MatrixCity</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                MatrixCity: A Large-scale City Dataset <br> for City-scale Neural Rendering and Beyond
+            </h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="https://yixuanli98.github.io/">Yixuan Li*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://jianglh-whu.github.io/">Lihan Jiang*<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://kam1107.github.io/">Yuanbo Xiangli<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://zhenzhiwang.github.io/">Zhenzhi Wang<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://dahua.me/">Dahua Lin<sup>1,2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://daibo.info/">Bo Dai<sup>2</sup></a>
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="http://mmlab.ie.cuhk.edu.hk/">The Chinese University of Hong Kong<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Laboratory<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                </div>
+
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    *denotes equal contribution
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="http://arxiv.org/abs/2309.16553">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>Arxiv</strong></h5>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./img/matrixcity_camera_ready.pdf">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>ICCV2023</strong></h5>
+                            </a>
+                        </li>
+
+			<li>
+			    <a href="https://github.com/city-super/MatrixCity">
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>Code</strong></h5>
+                            </a>
+                        </li>
+			    
+                        <li>
+                            <a href="https://openxlab.org.cn/datasets/bdaibdai/MatrixCity">
+                            <image src="../img/icon_dataset.png" height="50px"><br>
+                                <h5><strong>Data <br>(Openxlab)<br></strong></h5>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://pan.baidu.com/s/187P0e5p1hz9t5mgdJXjL1g">
+                            <image src="../img/icon_dataset.png" height="50px"><br>
+                                <h5><strong>Data  <br>(Baidu Netdisk)<br> password: hqnn</strong></h5>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./img/matrixcity_supp.pdf">
+                            <image src="../img/paperclip.png" height="50px"><br>
+                                <h5><strong>Supplement</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="./img/teaser.jpg" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    Neural radiance fields (NeRF) and its subsequent variants have led to remarkable progress in neural rendering.
+                    While most of recent neural rendering works focus on objects and small-scale scenes, developing neural rendering 
+                    methods for city-scale scenes is of great potential in many real-world applications. However, this line of 
+                    research is impeded by the absence of a comprehensive and high-quality dataset, 
+                    yet collecting such a dataset over real city-scale scenes is costly, sensitive, and technically infeasible.  
+                    
+                    To this end, we build a large-scale, comprehensive, and high-quality synthetic dataset for city-scale neural rendering researches. 
+                    Leveraging the Unreal Engine 5 City Sample project, we developed a pipeline to easily collect aerial and street city views with ground-truth camera poses, 
+                    as well as a series of additional data modalities. Flexible control on environmental factors like light, weather, human and car crowd is also available in our pipeline, 
+                    supporting the need of various tasks covering city-scale neural rendering and beyond. 
+                    The resulting pilot dataset, MatrixCity, contains 60k aerial images and 350k street images from two city maps of total size 28km<sup>2</sup>. 
+                    On top of MatrixCity, a thorough benchmark is also conducted, which not only reveals unique challenges of the task of city-scale neural rendering, 
+                    but also highlights potential improvements for future works.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Our Excellent MatrixCity Dataset!
+                </h3>
+                <table>
+                    <tr>
+                        <td width="50%">
+                            <video id="v11" width="95%" autoplay loop muted controls>
+                                <source src="img/high_3.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="50%">
+                            <video id="v12" width="95%" autoplay loop muted controls>
+                                <source src="img/high_4.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                </table> 
+                <table>
+                    <tr>
+                        <td width="50%">
+                            <video id="v11" width="95%" autoplay loop muted controls>
+                                <source src="img/street_1.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="50%">
+                            <video id="v12" width="95%" autoplay loop muted controls>
+                                <source src="img/street_2.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                </table>  
+                <p class="text-justify">
+                    <strong> Example of our MatrixCity Dataset.</strong> MatrixCity Dataset contains various city environments 
+                    with multiple viewing angles, as well as additional properties, like depth and normal.
+                </p>   
+            </div>       
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Urban Roaming Experience
+                </h3>
+                <table>
+                    <tr>
+                        <td width="63%">
+                            <video id="v11" width="94%" autoplay loop muted controls>
+                                <source src="img/block_all_demo.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="70%">
+                            <video id="v12" width="90%" autoplay loop muted controls>
+                                <source src="img/road_demo.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                </tr>
+                </table>             
+                <p class="text-justify">
+                    <strong> Example NeRF Results on MatrixCity Dataset.</strong> The rendered novel views delivers an immersive experience for city roaming.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Comparison with Previous Datasets
+                </h3>
+                <image src="./img/comparsion_dataset.jpg" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Comparison of statistics and properties between our MatrixCity dataset with previous datasets.</strong> 
+                    (a) High Quality. The dataset is rendered with movie-level quality, closely resembling real-world data. 
+                    (b) Large-scale and Diversity. Our dataset encompasses two cities with extensive coverage, capturing a wide range of buildings, pedestrians, signs, vehicles, and diverse lighting conditions.
+                    (c) Controllable Environments. We can control the lighting angle and intensity, the density and height of fog, and the density of flow of pedestrians
+                    and vehicles in a fine-grained manner.
+                    (d) Multiple Properties. Our developed plugin has the capability to extract additional information, such as depth, surface normals, and decomposed reflectance components, with minimal additional cost.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Data Collection Method
+                </h3>
+                <image src="./img/plugin.jpg" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    we developed a plugin that automatically generates camera trajectories, reducing the need for manual annotation and increasing the
+                    efficiency of data collection. Camera trajectories generated by our plugins can be rendered in any Unreal Engine 5
+                    scenes. Here we illustrate the data collection in the small city in Unreal Engine 5. (a) Aerial block split for the entire small city;
+                    (b&c) Camera aerial and street trajectory of block 4 (visualized in bird-eye views) used in our plugin for data collection.
+                </p>
+            </div>
+        </div> 
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Other Properties
+                </h3>
+                <image src="./img/illumination&fog.png" class="img-responsive" alt="overview"></image>
+                <p class="text-justify">
+                    Matrixcity dataset provides controlled environment factors such as illumination (a), fog density (b) and decomposed reflectance (c) 
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Benchmark
+                </h3>
+                <!-- <image src="./img/high_result.png" class="img-responsive" alt="overview"></image>
+                <image src="./img/street_result.png" class="img-responsive" alt="overview"></image> -->
+                <image src="./img/benchmark.jpg" class="img-responsive" alt="overview"></image>
+                <p class="text-justify">
+                    <strong>Benchmark for novel view synthesis. </strong>
+                    We present the performance of five state-of-the-art and representative methods on our dataset.
+                </p> 
+            </div>
+        </div> 
+    
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@article{li2023matrixcity,
+    title={MatrixCity: A Large-scale City Dataset for City-scale Neural Rendering and Beyond},
+    author={Li, Yixuan and Jiang, Lihan and Xu, Linning and Xiangli, Yuanbo and Wang, Zhenzhi and Lin, Dahua and Dai, Bo},
+    journal={arXiv e-prints},
+    pages={arXiv--2308},
+    year={2023}
+    }
+</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    License
+                </h3>
+                <p class="text-justify">
+                    Our Matrixcity dataset is copyright by us and published under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+                    <!-- We would like to thank Haiyi Mei and <a href="https://scholar.google.com.hk/citations?user=jZH2IPYAAAAJ&hl=en">Lei Yang</a> for their invaluable help and discussions for the plug-in development. -->
+                </p>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    License
+                </h3>
+                <p class="text-justify">
+                    We would like to thank Haiyi Mei and <a href="https://scholar.google.com.hk/citations?user=jZH2IPYAAAAJ&hl=en">Lei Yang</a> for their invaluable help and discussions for the plug-in development.
+                </p>
+            </div>
+        </div> -->
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
+</html>

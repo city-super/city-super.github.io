@@ -129,3 +129,8 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
+
+.image600{
+  width:50%;
+  max-width:600px;
+}

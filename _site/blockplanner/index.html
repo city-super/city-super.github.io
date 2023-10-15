@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>BlockPlanner</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                BlockPlanner: City Block Generation with 
+                <br>Vectorized Graph Representation
+                <br>
+                <small>
+                    ICCV 2021
+                </small>
+            </h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://kam1107.github.io/">Yuanbo Xiangli*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://anyirao.com/">Anyi Rao<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://nxzhao.com/">Nanxuan Zhao<sup>1,3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://daibo.info/">Bo Dai<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://liuziwei7.github.io/">Ziwei Liu<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://dahua.me/">Dahua Lin<sup>1,3,4</sup></a>
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="http://mmlab.ie.cuhk.edu.hk/">MMLab, The Chinese University of Hong Kong<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.mmlab-ntu.com/">S-Lab, Nanyang Technological University<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    </br>
+                    <a href="https://www.cuhk.edu.hk/english/research/innohk-centres/perceptual-and-interactive-intelligence.html">Centre of Perceptual and Interactive Intelligence<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    <a href="https://www.shlab.org.cn/">Shanghai AI Laboratory<sup>4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                </div>
+
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    *denotes equal contribution
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Xu_BlockPlanner_City_Block_Generation_With_Vectorized_Graph_Representation_ICCV_2021_paper.pdf">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>Paper</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://openaccess.thecvf.com/content/ICCV2021/supplemental/Xu_BlockPlanner_City_Block_ICCV_2021_supplemental.pdf">
+                            <image src="../img/paperclip.png" height="50px"><br>
+                                <h5><strong>Supplement</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    City modeling is the foundation for computational urban planning, navigation, and entertainment. In this work, we present the first generative model of city blocks named BlockPlanner, and showcase its ability to synthesize valid city blocks with varying land lots configurations. We propose a novel vectorized city block representation utilizing a ring topology and a two-tier graph to capture the global and local structures of a city block. Each land lot is abstracted into a vector representation covering both its 3D geometry and land use semantics. Such vectorized representation enables us to deploy a lightweight network to capture the underlying distribution of land lots configuration in a city block. To enforce intrinsic spatial constraints of a valid city block, a set of effective loss functions are imposed to shape rational results. We contribute a pilot city block dataset to demonstrate the effectiveness and efficiency of our representation and framework over the state-of-the-art. Notably, our BlockPlanner is also able to edit and manipulate city blocks, enabling several useful applications, e.g., topology refinement and footprint generation.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Framework
+                </h3>
+                <image src="img/pipeline.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Overview of BlockPlanner.</strong>
+                    The model learns to generate city blocks under a VAE training scheme.
+                    Each city block is represented by a graph with lots arranged in a ring topology. After encoding the input graph into a 128-d
+                    latent code, the decoder first predicts 1) the aspect ratio of the block shape, 2) the edge map indicating adjacent relations,
+                    and 3) the initial feature for each lot node. Then the initial features are updated through iterative message passing and output
+                    1) existence of lots, 2) the land use category, 3) the geometry parameters, and 4) the merged and boundary attributes, with
+                    four linear heads. These attributes are further used to calculate the reconstruction error and the geometry violations, plus the
+                    conventional variational loss.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example Results
+                </h3>
+                <image src="img/result.png" class="img-responsive" alt="overview"><br>         
+                <p class="text-justify">
+                    <strong> Qualitative evaluations.</strong>
+                    Column 2-3: LayoutVAE and MolVAE fail to capture valid block topology, while our
+                    BlockPlanner efficiently generates diverse and valid block layouts with reasonable land use categories. Column 5-6: marker
+                    (L) indicates land use level view. Though pixel-based BlockGAN generates sensible structure for large lots, the artifacts such
+                    as the fuzzy boundary are significant. In contrast, our vectorized representation captures much more accurate geometry even
+                    in small areas. (Dimgray color indicates the unfilled regions.)
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    3D Visualization and Animations
+                </h3>
+                <table>
+                    <tr>
+                    <td width="33%">
+                        <image src="img/supp.png" width=92% class="img-responsive" alt="overview"><br>  
+                    </td>
+                    <td width="32%">
+                        <video id="v11" width="100%" autoplay loop muted controls>
+                            <source src="img/block animation.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                    <td width="32%">
+                        <video id="v12" width="100%" autoplay loop muted controls>
+                            <source src="img/fun.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                    <!-- <td width="50%">
+                    <div class="slideshow-container">
+                        <div class="mySlides">
+                        <div class="numbertext">1 / 3</div>
+                        <div class="col-md-12 col-md-offset-0">
+                        <div class="text" >Earth-scale Manhattan</div>
+                        <video id="v0" width="100%" autoplay loop muted controls>
+                            <source src="img/video3.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">2 / 3</div>
+                        <div class="col-md-12 col-md-offset-0">
+                        <div class="text">Los Angeles</div>
+                        <video id="v1" width="100%" autoplay loop muted controls>
+                            <source src="img/Transamerica_citynerf_demo.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">3 / 3</div>
+                        <div class="col-md-12 col-md-offset-0">
+                        <div class="text">Seattle</div>
+                        <video id="v2" width="100%" autoplay loop muted controls>
+                            <source src="img/seattle_v2.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        </div>
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+
+                    <br>
+                    <br>
+                    </td> -->
+                </tr>
+                </table>                
+            </div>
+        </div>
+        <!-- Slideshow container -->
+       
+<!--         <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Links
+                </h3>
+            </div>
+        </div> -->
+
+        
+
+<!--         <div class="row" id="header_img">
+            <figure class="col-md-8 col-md-offset-2">
+                <image src="img/llff_teaser.png" class="img-responsive" alt="overview">
+                <figcaption>
+                </figcaption>
+            </figure>
+                
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Technical Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/LY6MgDUzS3M" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+
+@inproceedings{xu2021blockplanner,
+    title={BlockPlanner: City Block Generation With Vectorized Graph Representation},
+    author={Xu, Linning and Xiangli, Yuanbo and Rao, Anyi and Zhao, Nanxuan and Dai, Bo and Liu, Ziwei and Lin, Dahua},
+    booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+    pages={5077--5086},
+    year={2021}
+}
+</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
+</html>

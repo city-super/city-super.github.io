@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Grid-guided Neural Radiance Fields for Large Urban Scenes</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link rel="icon" type="image/png" href="../img/newyork.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                <!-- CityNeRF: Building NeRF at City Scale -->
+                Grid-guided Neural Radiance Fields
+                for Large Urban Scenes 
+                <!-- <small>  (CVPR 2023)  </small> -->
+            </h1>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="https://eveneveno.github.io/lnxu/">Linning Xu*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://kam1107.github.io/">Yuanbo Xiangli*<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://pengsida.net/">Sida Peng<sup>4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://xingangpan.github.io/">Xingang Pan<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <br>
+                    <a style="color:#000000;" href="http://nxzhao.com/">Nanxuan Zhao<sup>5</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://daibo.info/">Bo Dai<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="http://dahua.me/">Dahua Lin<sup>1,2</sup></a>
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="http://mmlab.ie.cuhk.edu.hk/">The Chinese University of Hong Kong<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Laboratory<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                <br>
+                    <a href="https://www.mpi-inf.mpg.de/">Max Planck Institute for Informatics<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+                    <a href="">Zhejiang University<sup>4</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    <a href="">Adobe Research<sup>5</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                </div> 
+
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    *denotes equal contribution
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <!-- <li>
+                            <a href="https://arxiv.org/abs/2112.05504">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>arxiv</strong></h5>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a href="https://arxiv.org/abs/2303.14001">
+                            <image src="../img/paper.png" height="50px"><br>
+                                <h5><strong>CVPR2023</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/InternLandMark/LandMark">
+                            <image src="../img/github_pad.png" height="50px"><br>
+                                <h5><strong>LandMark</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./img/supp.pdf">
+                            <image src="../img/paperclip.png" height="50px"><br>
+                                <h5><strong>Supplementary</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="img/teaser.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Target Scenes.</strong> In this work, we perform large urban scene rendering with novel grid-guided neural radiance fields. 
+                    An example of a large urban scene is shown on the left, 
+                    which spans over 2.7km^2 ground areas captured by over 5k drone images. 
+                    We show that the rendering results from NeRF-based methods,
+                    are blurry and overly smoothed with limited model capacity, while feature grid-based methods
+                    tend to display noisy artifacts when adapting to large-scale scenes with high-resolution feature grids. 
+                    Our proposed two-branch model combines the merits from both approaches and achieves photorealistic novel 
+                    view renderings with remarkable improvements over existing methods. Both of the two branches gain significant 
+                    enhancements over their individual baselines.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Urban Roaming Experience
+                </h3>
+                <table>
+                    <tr>
+                        <td width="52%">
+                            <video id="v11" width="90%" autoplay loop muted controls>
+                                <source src="img/xuhui.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td width="47%">
+                            <video id="v12" width="100%" autoplay loop muted controls>
+                                <source src="img/xuhui2.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                </tr>
+                </table>             
+                <p class="text-justify">
+                    <strong> Example Results on Real wold Ubran Scenes.</strong> The long trajectory of rendered novel views from our model delivers an immersive experience for city roaming.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Framework
+                </h3>
+                <image src="img/framework.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Overview of GridNeRF.</strong> Our method consists of two branches, namely the grid branch and NeRF branch, highlighted in the right boxes. 
+                    1) We start by fast capturing the scene with a pyramid of feature planes at the pre-train stage, and performing a coarse sampling of ray points and predicting 
+                    their radiance values through a shallow MLP renderer (grid branch), supervised by the MSE loss on the volumetrically integrated pixel colors. 
+                    This step yields a set of informative multi-resolution density/appearance feature plane pyramids shown on the middle.
+                    2) Next, we proceed to the joint learning stage and perform a finer sampling. We use the pre-trained feature grid to guide NeRF branch sampling to concentrate on the scene surface. 
+                    The sampled points' grid feature is inferred by bilinear interpolation on the feature planes. 
+                    The features are then concatenated with the positional encoding and fed to NeRF branch to predict volume density and color. 
+                    Note that, the grid branch maintains being supervised with the ground truth images along with NeRF's fine-rendering results.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Ground Feature Maps
+                </h3>
+                <image src="img/refined.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong> Refined grid feature maps.</strong> Visualization of one feature component in (a) density and (b) appearance feature plane (Residential scene).
+                    Compared to the pre-trained feature planes, the rectified ones are less noisy; sharper edges and regular shapes of grouped objects can also be clearly identified. 
+                    Since density and appearance features are independently learned, they encode different information that describes the scene. 
+                    The appearance feature can capture environmental effects like shadows, as shown in (b).
+                </p>
+
+
+                <image src="img/compare1.png" class="img-responsive" alt="overview"><br>
+                    <p class="text-justify">
+                        <strong> Grid Branch Outputs.</strong> Qualitative comparison showing the rendering results using features learned (a) at a moderate grid resolution (2048^2), 
+                        (b) at a high grid resolution (4096^2) and (c) from the rectified grid branch at resolution (4096^2). 
+                        Despite higher grid resolution leads to better visual quality, adding NeRF supervision pushes the quality toward photorealistic one step further.
+            
+                    </p>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Two branch outputs
+                </h3>
+                <table>
+                    <tr>
+                    <td width="100%">
+                        <video id="v11" width="100%" autoplay loop muted controls>
+                            <source src="img/Video_B_two_branch.mp4" type="video/mp4" />
+                        </video>
+                    </td>
+                </tr>
+                </table>                
+                <p class="text-justify">
+                    <strong> Rendering from two branches.</strong> Without global continuity prior, rendering from Grid branch tends to get noisy floats in the air without 3D consistency.
+                </p>
+            </div>
+        </div>
+        <br>
+
+
+        <!-- Slideshow container -->
+       
+<!--         <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Links
+                </h3>
+            </div>
+        </div> -->
+
+        
+
+<!--         <div class="row" id="header_img">
+            <figure class="col-md-8 col-md-offset-2">
+                <image src="img/llff_teaser.png" class="img-responsive" alt="overview">
+                <figcaption>
+                </figcaption>
+            </figure>
+                
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Technical Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/LY6MgDUzS3M" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@misc{xu2023gridguided,
+    title={Grid-guided Neural Radiance Fields for Large Urban Scenes}, 
+    author={Linning Xu and Yuanbo Xiangli and Sida Peng and Xingang Pan and Nanxuan Zhao and Christian Theobalt and Bo Dai and Dahua Lin},
+    year={2023},
+    eprint={2303.14001},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+                </textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>.
+                </p>
+            </div>
+        </div> -->
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+
+</html>
