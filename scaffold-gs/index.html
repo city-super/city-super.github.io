@@ -1,0 +1,221 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering">
+  <meta name="keywords" content="Scaffold-GS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="">Tao Lu*</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="">Mulin Yu*</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://eveneveno.github.io/lnxu">Linning Xu</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="">Yuanbo Xiangli</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="">Limin Wang</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="">Dahua Lin</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="">Bo Dai</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Shanghai Artificial Intelligence Laboratory</span>,
+            <span class="author-block"><sup>2</sup> The Chinese University of Hong Kong</span>
+            <span class="author-block"><sup>3</sup> Nanjing University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Supp</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+
+    <!-- <div class="hero-body">
+      <img src="./static/images/pipeline.png"> 
+      
+      <h2 class="subtitle has-text-centered">
+        Scaffold-GS represents the scene using a set of 3D Gaussians structured in a dual-layered hierarchy. Anchored on a sparse
+        grid of initial points, a modest set of neural Gaussians are spawned from each anchor to dynamically adapt to various viewing angles
+        and distances. 
+      </h2>
+    </div> -->
+    <div class="hero-body">
+      <img src="./static/images/teaser.png"> 
+      
+      <h2 class="subtitle has-text-centered">
+        Scaffold-GS achieves rendering quality and speed comparable to 3D-GS with a more compact model. Across multiple datasets, Scaffold-GS demonstrates more robustness in large outdoor scenes and intricate indoor
+        environments with challenging observing views e.g. transparency, specularity, reflection, texture-less regions and fine-scale details.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-apartment">
+          <video poster="" id="apartment" autoplay controls muted loop playsinline height="100%">
+            <source src="./videos/apartment.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-riverview">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./videos/riverview.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+
+          <p>
+            Neural rendering methods have significantly advanced photo-realistic 3D scene rendering in various academic and industrial applications. The recent 3D Gaussian Splatting method has achieved the state-of-the-art rendering quality and speed combining the benefits of both primitive-based representations and volumetric representations. 
+However, it often leads to heavily redundant Gaussians that try to fit every training view, neglecting the underlying scene geometry. Consequently, the resulting model becomes less robust to significant view changes, texture-less area and lighting effects.
+We introduce Scaffold-GS, which uses anchor points to distribute local 3D Gaussians, and predicts their attributes on-the-fly based on viewing direction and distance within the view frustum. 
+Anchor growing and pruning strategies are developed based on the importance of neural Gaussians to reliably improve the scene coverage. We show that our method effectively reduces redundant Gaussians while delivering high-quality rendering. 
+We also demonstrates an enhanced capability to accommodate scenes with varying levels-of-detail and view-dependent observations, without sacrificing the rendering speed.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+
+          <img src="./static/images/pipeline.png"> 
+
+          <p>
+            <b> Overview of Scaffold-GS.</b> (a) We start by forming a sparse voxel grid from SfM-derived points. An anchor associated with
+            a learnable scale is placed at the center of each voxel, roughly sculpturing the scene occupancy. (b) Within a view frustum, k neural
+            Gaussians are spawned from each visible anchor with offsets. Their attributes, i.e. opacity, color, scale and quaternion are then
+            decoded from the anchor feature, relative camera-anchor viewing direction and distance using. (c) Note that
+            to alleviate redundancy and improve efficiency, only non-trivial neural Gussians are rasterized. The rendered
+            image is supervised via reconstruction, structural similarity, and a volume regularization.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Videos</h2>
+
+        <video id="supp video" autoplay controls muted loop playsinline height="100%">
+          <source src="./videos/capture.mov" type="video/mp4">
+        </video>
+      </div>
+    </div> -->
+
+  </div>
+</section>
+
+
+<!-- 
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
