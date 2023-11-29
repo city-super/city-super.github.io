@@ -20,6 +20,18 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+        .container {
+            width: 80%; /* 或者根据需要设置为其他宽度 */
+            margin: auto; /* 居中显示 */
+        }
+
+        .responsive-video {
+            width: 80%; /* 视频宽度为容器的 100% */
+            height: auto; /* 高度自动调整以保持宽高比 */
+        }
+    </style>
 </head>
 <body>
 
@@ -122,8 +134,8 @@
       <div class="column is-four-fifths">
 <!--         <h2 class="title is-3">Data Capture</h2> -->
 
-        <video id="supp video" autoplay loop muted playsinline height="100%">
-          <source src="./static/images/output_video_numbered_compressed_two.mp4" type="video/mp4">
+        <video class="responsive-video" id="supp video" autoplay loop muted playsinline>
+          <source src="./static/images/output_video_numbered_compressed.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
          Scaffold-GS achieves rendering quality and speed comparable to 3D-GS with a more compact model. Across multiple datasets, Scaffold-GS demonstrates more robustness in large outdoor scenes and intricate indoor
