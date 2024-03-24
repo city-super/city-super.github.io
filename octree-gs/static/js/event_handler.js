@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', domReady);
                         image.src = './static/images/levels/truck';
                         break;
                     case 6:
-                        image.src = './static/images/levels/DR';
+                        image.src = './static/images/levels/Dr';
                         break;
                     case 7:
                         image.src = './static/images/levels/Playroom';
