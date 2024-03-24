@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.asm": "bat",
+    "plyconfig.json": "jsonc"
+  }
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Octree-GS: Towards Consistent Real-time Rendering with LOD-Structured 3D Gaussians">
+  <meta name="keywords" content="Octree-GS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Octree-GS: Towards Consistent Real-time Rendering with LOD-Structured 3D Gaussians</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/video-comparison.js"></script>
+
+  <style>
+        .container {
+            width: 80%; /* 或者根据需要设置为其他宽度 */
+            margin: auto; /* 居中显示 */
+        }
+
+        .responsive-video {
+            width: 45%; /* 视频宽度为容器的 100% */
+            height: auto; /* 高度自动调整以保持宽高比 */
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: 700px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+        }
+        .rounded-corners {
+    border-radius: 10px; /* 设置圆角的大小 */
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; /* 统一设置视频高度 */
+            width: auto;   /* 宽度自适应 */
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;         /* 使用 flexbox 布局 */
+            justify-content: center; /* 水平居中 */
+        }
+        .video-container video {
+            width: 30%;           /* 每个视频宽度占容器的30% */
+            margin: 5px;          /* 视频之间的间隔 */
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; /* 可以改为 center 使得视频在行中居中 */
+    margin-bottom: 20px; /* 行与行之间的间距 */
+  }
+
+  .fixed-size-video-small {
+    width: 33%; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+  }
+  .fixed-size-video-small-two {
+    width: 800px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+  }
+  .fixed-size-video-small-three {
+    width: 1340px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+  }
+  
+  /* 可能需要调整的样式 */
+  @media screen and (max-width: 768px) {
+    /* 在较小屏幕上，让视频堆叠而不是并排 */
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<style>
+        .text-container {
+            max-width: 1070px; /* 限制文本容器的最大宽度 */
+            margin: 0 auto;    /* 居中文本容器 */
+            padding: 20px;     /* 为容器添加一些内边距 */
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Octree-GS: Towards Consistent Real-time Rendering with LOD-Structured 3D Gaussians</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://github.com/tongji-rkr">Kerui Ren*</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="https://jianglh-whu.github.io/">Lihan Jiang*</a><sup>1,3</sup>,</span>
+            <span class="author-block"><a href="https://inspirelt.github.io/">Tao Lu</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=w0Od3hQAAAAJ">Mulin Yu</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://eveneveno.github.io/lnxu">Linning Xu</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="https://eezkni.github.io/">Zhangkai Ni</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://daibo.info/">Bo Dai</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Shanghai Artificial Intelligence Laboratory</span>, 
+            <span class="author-block"><sup>2</sup> Tongji University</span>, 
+            <span class="author-block"><sup>3</sup> University of Science and Technology of China</span>, 
+            <span class="author-block"><sup>4</sup> The Chinese University of Hong Kong</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Supp</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://gitlab.pjlab.org.cn/renkerui/Scaffold-GS-Octree"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- View Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-dribbble"></i>
+                  </span>
+                  <span>Viewer</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="text-container">
+        <p style="font-size:22px;">
+          TL;DR: We introduce <b>Octree</b>-GS, featuring an <b>LOD</b>-structured 3D Gaussian approach supporting level-of-detail decomposition for both scene geometry and rendering results. 
+          <!-- Our model dynamically selects the appropriate level from the set of multi-resolution anchor points, ensuring <b>consistent</b> rendering performance with adaptive LOD adjustments while maintaining <b>high-fidelity</b> rendering. -->
+        </p>
+      </div>
+      <video class="fixed-size-video rounded-corners" id="supp video" autoplay loop muted playsinline controls>
+        <source src="./static/images/matrix_city.mp4" type="video/mp4">
+      </video>
+
+      <p style="font-size:22px;">
+        Our method can guarantee <b>continuous real-time rendering</b> while achieving <b>better</b> visual quality.
+      </p>  
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="hero-body">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p style="font-size:18px;">
+              The recent 3D Gaussian splatting (3D-GS) has shown remarkable rendering fidelity and excels in speed compared to NeRF-basedneural scene representations. 
+              While demonstrating the potential for realtime rendering, 3D-GS encounters rendering bottlenecks in large scenes with complex details due to an excessive number of Gaussian primitives located within the viewing frustum. 
+              This limitation is particularly noticeable in zoom-out views and can lead to inconsistent rendering speeds in scenes with varying details. 
+              Moreover, it often struggles to capture the corresponding level of details to the different scales with its heuristic Gaussian growing operation. 
+              Inspired by the Level-of-details (LOD) techniques, we introduce Octree-GS, featuring an LOD-structured 3D Gaussian approach supporting level-of-detail decomposition for both scene geometry and rendering results. 
+              Our model dynamically selects the appropriate level from the set of multi-resolution anchor points, ensuring consistent rendering performance with adaptive LOD adjustments while maintaining high-fidelity rendering results.
+            </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+
+  <br><br>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <div class="hero-body">
+          <h2 class="title is-3">Method Overview</h2>
+          <img src="./static/images/pipeline.png"> 
+          <div class="content has-text-justified">
+            <p style="margin-top: 30px; font-size:18px;">
+              <b> Illustration of our proposed Octree-GS: </b>  Starting from a sparse point cloud, we construct an octree for the bounded 3D space. 
+              Each octree level provides a set of anchor Gaussians assigned to the corresponding LOD level. 
+              Unlike conventional 3D-GS methods treating all Gaussians equally, our approach involves anchor Gaussians with different LODs. 
+              During novel view rendering, we determine the required LOD level ℓ for each occupied anchor voxel within the octree from the observation center and invoke all anchor Gaussians up to that level for final rendering. 
+              This process, shown in the middle, results in an increased level of detail by gradually fetching anchors from higher LODs in an accumulation manner. 
+              Our model is trained with standard image reconstruction loss and additional regularization loss following the practice of Scaffold-GS.
+            </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="columns is-centered ">
+    <div class="column is-full-width">
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 40px">Results</h2>
+    </div>
+  </div>
+
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+      <strong><p style="font-size:18px; padding-top: 10px;"> 
+        In real large scenes, <em>Octree-GS</em> can ensure continuous real-time rendering while maintaining fine rendering details. 
+        Compared with current SOTA methods, our method has significant advantages when rendering in the high-altitude views.
+        <br> <br>
+      <div class="video-row">
+        <video class="fixed-size-video-small rounded-corners" poster="" id="rubble1" autoplay controls muted loop playsinline>
+          <source src="./static/images/rubble/scaffold_gs.mp4" type="video/mp4">
+        </video>
+        <div style="padding-right: 10px;"></div>
+        <video class="fixed-size-video-small rounded-corners" poster="" id="rubble2" autoplay controls muted loop playsinline>
+          <source src="./static/images/rubble/octree_gs.mp4" type="video/mp4">
+        </video>
+        <div style="padding-right: 10px;"></div>
+        <video class="fixed-size-video-small rounded-corners" poster="" id="rubble3" autoplay controls muted loop playsinline>
+          <source src="./static/images/rubble/mip_splatting.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-row">
+        <div class="fixed-size-video-small rounded-corners" style="padding-right: 20px; margin-top: -10px;">
+          Scaffold-GS 
+        </div>
+        <div class="fixed-size-video-small rounded-corners" style="margin-top: -10px;">
+          Octree-GS 
+        </div>
+        <div class="fixed-size-video-small rounded-corners" style="padding-left: 20px; margin-top: -10px;">
+          Mip-Splatting 
+        </div>
+      </div>
+      <div class="video-row">
+        <video class="fixed-size-video-small rounded-corners" poster="" id="residence1" autoplay controls muted loop playsinline>
+          <source src="./static/images/residence/scaffold_gs.mp4" type="video/mp4">
+        </video>
+        <div style="padding-right: 10px;"></div>
+        <video class="fixed-size-video-small rounded-corners" poster="" id="residence2" autoplay controls muted loop playsinline>
+          <source src="./static/images/residence/octree_gs.mp4" type="video/mp4">
+        </video>
+        <div style="padding-right: 10px;"></div>
+        <video class="fixed-size-video-small rounded-corners" poster="" id="residence3" autoplay controls muted loop playsinline>
+          <source src="./static/images/residence/mip_splatting.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-row">
+        <div class="fixed-size-video-small rounded-corners" style="padding-right: 20px; margin-top: -10px; margin-bottom: -10px;">
+          Scaffold-GS 
+        </div>
+        <div class="fixed-size-video-small rounded-corners" style="margin-top: -10px; margin-bottom: -10px;">
+          Octree-GS 
+        </div>
+        <div class="fixed-size-video-small rounded-corners" style="padding-left: 20px; margin-top: -10px; margin-bottom: -10px;">
+          Mip-Splatting 
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+
+<section class="section">
+  <div class="hero-body" style="margin-top: -60px;">
+    <div class="container is-max-desktop" style="text-align:left">
+      <h3 class="title is-4">Comparison with SOTA method</h3>
+      <p style="font-size:18px; font-weight: 300;">        
+        Compared to existing baselines, <em>Octree-GS</em> successfully captures very fine details present in the scene, particularly for objects with thin structures such as trees, light-bulbs, decorative texts, etc.
+      </p>
+      <br>
+      <div class="content has-text-centered" style="width: 80%; margin: auto;">
+        <img src="./static/images/main.png"> 
+      </div>
+    </div>
+    <div class="container is-max-desktop" style="text-align:left; margin-top: 30px;">
+      <h3 class="title is-4">Effectiveness of Progressive Training</h3>
+      <p style="font-size:18px; font-weight: 300;">    
+        Visualization of anchor Gaussians in different LODs (several levels are omitted for visual brevity), displaying both anchor points and splatted 2D Gaussians in each image.
+        Progressive training can guide the coarse-to-fine reconstruction process, avoid overlappiing between different LOD levels. This strategy can not only reduce the number of rendered neural Gaussians, but improve the rendering accuracy of coarser LOD levels (e.g. LOD0, LOD1).
+      </p>
+      <br>
+      <div class="content has-text-centered" style="width: 80%; margin: auto; margin-bottom: 30px;">
+        <img src="./static/images/select.png"> 
+      </div>
+      <div class="content has-text-centered">
+        <video class="video" width="100%" id="ablation1" loop="" playsinline="" autoplay="" muted="" src="./static/images/ablation1.mp4" onplay="resizeAndPlay(this)"></video>
+        <canvas class="videoMerge" id="ablation1Merge"></canvas>
+      </div>
+    </div>
+    <div class="container is-max-desktop" style="text-align:left; margin-top: 30px;">
+      <h3 class="title is-4">Effectiveness of LOD Bias</h3>
+      <p style="font-size:18px; font-weight: 300;">    
+        LOD bias is set as a learnable parameters for each anchor Gaussian as a residual to LOD levels. it effectively supplement the high-frequency regions with more consistent details to be rendered during inference process, such as those sharp edges of an object.
+      </p>
+      <br>
+      <div class="content has-text-centered">
+        <video class="video" width="100%" id="ablation2" loop="" playsinline="" autoplay="" muted="" src="./static/images/ablation2.mp4" onplay="resizeAndPlay(this)"></video>
+        <canvas class="videoMerge" id="ablation2Merge"></canvas>
+      </div>
+    </div>
+    <div class="container  is-max-desktop" style="text-align:left; margin-top: 30px;">
+      <h3 class="title is-4">Visualization at different LODs</h3>
+      <p style="font-size:18px; font-weight: 300;">  
+        A clear division of roles is evident between different levels: LOD 0 captures most rough scene contents, and higher LODs gradually pick up the previously missed high-frequency details.
+        The following is a hierarchical visualization of the rendering results on various types of scenes.
+      </p> 
+      <div class="content has-text-centered">
+        <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon">
+            <li class="nav-item">
+              <a class="nav-link active" onclick="objectSceneEvent(0)">Bicycle</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(1)">Counter</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(2)">Garden</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(3)">Stump</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(4)">Room</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(5)">Truck</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(6)">DrJohnson</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="objectSceneEvent(7)">Playroom</a>
+            </li>
+        </ul>
+        <div class="b-dics" style="font-weight: 600;">
+            <img src="./static/images/levels/bicycle_LOD0.png" alt="LOD0">
+            <img src="./static/images/levels/bicycle_LOD1.png" alt="LOD1">
+            <img src="./static/images/levels/bicycle_LOD2.png" alt="LOD2">
+            <img src="./static/images/levels/bicycle_LOD3.png" alt="LOD3">
+        </div>
+      </div>
+    </div>    
+  </div>
+</section>
+
+<section class="section" style="margin-top: -100px;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <div class="hero-body">
+          <h2 class="title is-3">
+            Real-Time Interactive Viewer
+          </h2>
+          <div class="content has-text-justified">
+            <p style="margin-top: 30px; font-size:18px; font-weight: 300;">
+              Gaussian Viewer for <em>Octree-GS</em> will be available soon.
+            </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
