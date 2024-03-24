@@ -1,0 +1,547 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering">
+  <meta name="keywords" content="Scaffold-GS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+        .container {
+            width: 80%; /* 或者根据需要设置为其他宽度 */
+            margin: auto; /* 居中显示 */
+        }
+
+        .responsive-video {
+            width: 45%; /* 视频宽度为容器的 100% */
+            height: auto; /* 高度自动调整以保持宽高比 */
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: 700px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+        }
+        .rounded-corners {
+    border-radius: 10px; /* 设置圆角的大小 */
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; /* 统一设置视频高度 */
+            width: auto;   /* 宽度自适应 */
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;         /* 使用 flexbox 布局 */
+            justify-content: center; /* 水平居中 */
+        }
+        .video-container video {
+            width: 30%;           /* 每个视频宽度占容器的30% */
+            margin: 5px;          /* 视频之间的间隔 */
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; /* 可以改为 center 使得视频在行中居中 */
+    margin-bottom: 20px; /* 行与行之间的间距 */
+  }
+
+  .fixed-size-video-small {
+    width: 534px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+  }
+  .fixed-size-video-small-two {
+    width: 800px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+  }
+  .fixed-size-video-small-three {
+    width: 1340px; /* 设置视频的固定宽度 */
+            height: auto; /* 设置视频的固定高度 */
+  }
+  
+  /* 可能需要调整的样式 */
+  @media screen and (max-width: 768px) {
+    /* 在较小屏幕上，让视频堆叠而不是并排 */
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<style>
+        .text-container {
+            max-width: 1070px; /* 限制文本容器的最大宽度 */
+            margin: 0 auto;    /* 居中文本容器 */
+            padding: 20px;     /* 为容器添加一些内边距 */
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://inspirelt.github.io/">Tao Lu*</a><sup>1,3</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=w0Od3hQAAAAJ">Mulin Yu*</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://eveneveno.github.io/lnxu">Linning Xu</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://kam1107.github.io/">Yuanbo Xiangli</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="https://wanglimin.github.io/">Limin Wang</a><sup>3,1</sup>,</span>
+            <span class="author-block"><a href="http://dahua.site/">Dahua Lin</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="https://daibo.info/">Bo Dai</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Shanghai Artificial Intelligence Laboratory</span>,
+            <span class="author-block"><sup>2</sup> The Chinese University of Hong Kong</span>,
+            <span class="author-block"><sup>3</sup> Nanjing University</span>
+            <span class="author-block"><sup>4</sup> Cornell University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2312.00109"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            <!--   <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Supp</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/city-super/Scaffold-GS"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+
+
+<div class="columns is-centered has-text-centered">
+
+      <div class="column is-four-fifths">
+        <div class="text-container">
+        <p style="font-size:25px;">
+          <b>TL;DR: </b>We introduce <b>Scaffold-GS</b>, which uses anchor points to distribute local 3D Gaussians, 
+          and predicts their attributes on-the-fly based on viewing direction and distance within the view frustum. 
+          
+        </p>
+        </div>
+        <video class="fixed-size-video rounded-corners" id="supp video" autoplay loop muted playsinline controls>
+          <source src="./static/images/output_video_numbered_compressed_two.mp4" type="video/mp4">
+
+        </video>
+
+        <p style="font-size:25px;">
+         Our method converges <b>faster</b>, uses <b>fewer</b> primitives, and achieves <b>better</b> visual quality.
+        </p>
+
+        
+      </div>
+    </div>
+<br>
+<div class="container is-max-desktop">
+
+      <div class="hero-body">
+        <!-- <h2 class="title is-3">Framework</h2> -->
+        <div class="content has-text-justified">
+          <div class="columns is-centered has-text-centered">
+          <img src="./static/images/teaser_big.png"> 
+          </div>
+          <p style="font-size:25px;">
+            Our method performs superior on scenes with challenging observing views. 
+            <i>e.g. transparency, specularity, reflection, texture-less regions and fine-scale details.</i>
+           </p>
+          <!-- <p> -->
+            <!-- <b> Scaffold-GS </b>  achieves rendering quality and speed comparable to 3D-GS with a more compact model.  -->
+            <!-- <b>Scaffold-GS</b> performs superior in large outdoor scenes and intricate indoor environments with challenging observing views e.g. transparency, specularity, reflection, texture-less regions and fine-scale details.
+          </p> -->
+
+        </div>
+      </div>
+    </div>
+
+
+<br><br>
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Method Overview</h2>
+</div>
+
+
+
+<div class="container is-max-desktop">
+
+      <div class="hero-body">
+        <!-- <h2 class="title is-3">Framework</h2> -->
+        <div class="content has-text-justified">
+
+          <img src="./static/images/pipeline.png"> 
+
+          <p>
+            <b> Framework.</b> (a) We start by forming a sparse voxel grid from SfM-derived points. An <em>anchor</em> associated with
+            a learnable scale is placed at the center of each voxel, roughly sculpturing the scene occupancy. (b) Within a view frustum, k <em>neural
+            Gaussians</em> are spawned from each visible anchor with offsets. Their attributes, i.e. opacity, color, scale and quaternion are then
+            decoded from the anchor feature, relative camera-anchor viewing direction and distance using MLPs. (c) Note that
+            to alleviate redundancy and improve efficiency, only non-trivial neural Gussians are rasterized. The rendered
+            image is supervised via reconstruction, structural similarity, and a volume regularization.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container is-max-desktop">
+
+      <div class="hero-body">
+
+        <div class="content has-text-justified">
+          <div class="columns is-centered has-text-centered">
+          <img src="./static/images/anchor_refine.png"> 
+
+
+          </div>
+          <p>
+            <b>Anchor refinement.</b> We propose an error-based anchor growing policy to reliably grow new anchors where neural Gaussians find significant. 
+            We quantize neural Gaussians into multi-resolution voxels and add new anchors to voxels with gradients larger than level-wise thresholds.
+            Our strategy effectively improves scene coverage without using excessive points.
+            <!-- We develop an anchor growing policy guided by the gradients of the neural Gaussians. From left to right, we spatially quantize neural Gaussians into multi-resolution voxels. New anchors are added to voxels with gradients larger than level-wise thresholds. -->
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+<br><br>
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Results</h2>
+</div>
+<br>
+
+
+
+    
+
+<!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+
+        <p style="font-size:25px;">
+          Our method converges <b>faster</b> with <b>fewer</b> primitives and <b>higher</b> quality.
+        </p>
+        <video class="fixed-size-video" id="supp video" autoplay loop muted playsinline controls>
+          <source src="./static/images/output_video_numbered_compressed_two.mp4" type="video/mp4">
+
+        </video>
+
+
+        
+      </div>
+    </div>
+ -->
+</section>
+
+
+
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+
+
+
+
+        <div class="content has-text-justified">
+
+          <p>
+           We introduce Scaffold-GS, which uses anchor points to distribute local 3D Gaussians, and predicts their attributes on-the-fly based on viewing direction and distance within the view frustum. Anchor growing and pruning strategies are developed based on the importance of neural Gaussians to reliably improve the scene coverage. We show that our method effectively reduces redundant Gaussians while delivering high-quality rendering. We also demonstrates an enhanced capability to accommodate scenes with varying levels-of-detail and view-dependent observations, without sacrificing the rendering speed.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+
+        <div class="content has-text-justified">
+
+          <img src="./static/images/teaser.png"> 
+
+          <p>
+            <b> Scaffold-GS </b>  achieves rendering quality and speed comparable to 3D-GS with a more compact model. Across multiple datasets, Scaffold-GS demonstrates more robustness in large outdoor scenes and intricate indoor environments with challenging observing views e.g. transparency, specularity, reflection, texture-less regions and fine-scale details.
+          </p>
+
+        </div>
+      </div>
+    </div> -->
+
+
+<!-- 
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+
+
+
+
+        <div class="content has-text-justified">
+
+
+            
+
+
+        </div>
+      </div>
+    </div> -->
+
+
+<!--     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+
+          <img src="./static/images/pipeline.png"> 
+
+          <p>
+            <b> Overview of Scaffold-GS.</b> (a) We start by forming a sparse voxel grid from SfM-derived points. An anchor associated with
+            a learnable scale is placed at the center of each voxel, roughly sculpturing the scene occupancy. (b) Within a view frustum, k neural
+            Gaussians are spawned from each visible anchor with offsets. Their attributes, i.e. opacity, color, scale and quaternion are then
+            decoded from the anchor feature, relative camera-anchor viewing direction and distance using. (c) Note that
+            to alleviate redundancy and improve efficiency, only non-trivial neural Gussians are rasterized. The rendered
+            image is supervised via reconstruction, structural similarity, and a volume regularization.
+          </p>
+
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Videos</h2>
+
+        <video id="supp video" autoplay controls muted loop playsinline height="100%">
+          <source src="./videos/capture.mov" type="video/mp4">
+        </video>
+      </div>
+    </div> -->
+
+<!--   </div>
+</section> -->
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+      <strong><p style="font-size:17.2px;"> <em>Scaffold-GS</em> rendering results on various types of scenes.
+        Challenging cases including texture-less area, insufficient observations, fine-scale details, view-dependent light effects and multi-scale observations are reasonably handeled.
+
+        <!-- ranging from synthetic object-level scenes, indoor and outdoor environments, to large-scale urban scenes and landscapes. It's robust on challenging cases, such as texture-less area, insufficient observations, fine-scale details, view-dependent light effects and multi-scale observations.</p></strong> -->
+<br> <br>
+      <div id="results-carousel" class="carousel results-carousel">
+        <!-- <div class="video-container"> -->
+        <div class="item item-riverview">
+          <video poster="" id="apartment" autoplay controls muted loop playsinline >
+            <source src="./static/images/Amsterdam_ours_cr.mp4" type="video/mp4">
+
+          </video>
+        </div>
+        <!-- </div> -->
+        <!-- <div class="video-container"> -->
+        <div class="item item-office2">
+        
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/apartment_ours_cr.mp4" type="video/mp4">
+
+          </video>
+       <!-- </div> -->
+        </div>
+        <div class="item item-office2">
+          <video poster="" id="office2" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/DrJohnson_ours_cr.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-workshop">
+          <video poster="" id="workshop" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/hotdog_ours_cr.mp4" type="video/mp4">
+          </video>
+        </div> 
+        <div class="item item-kitchen">
+          <video poster="" id="kitchen" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/images/Quebec_ours_cr.mp4" type="video/mp4">
+          </video>
+        </div>
+      
+        <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre></pre>
+  </div>
+</section> -->
+
+<!-- 
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+
+        
+    <video class="fixed-size-video-small" poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+        <source src="./static/images/compare_apartment_c.mp4" type="video/mp4">
+         
+    </video>
+    <video class="fixed-size-video-small" poster="" id="office2" autoplay controls muted loop playsinline height="100%">
+        <source src="./static/images/compare_bonsai_c.mp4" type="video/mp4">
+         
+    </video>
+    <video class="fixed-size-video-small" poster="" id="workshop" autoplay controls muted loop playsinline height="100%">
+        <source src="./static/images/compare_fics_c.mp4" type="video/mp4">
+
+    </video>
+</div>
+        
+
+      
+    </div>
+  </div>
+</section> -->
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+<strong><p style="font-size:17.2px;"><em>Scaffold-GS</em> is more robust to view-dependent effects (e.g. reflection, shadowing);
+  and alleviates the artifacts (e.g. floaters, structure error) caused by redundant 3D Gaussians.
+   </p></strong> 
+<br>
+      <!-- 第一行的视频 -->
+      <div class="video-row">
+        <video class="fixed-size-video-small rounded-corners" poster="" id="chair-tp" autoplay controls muted loop playsinline>
+          <source src="./static/images/compare_apar_t.mp4" type="video/mp4">
+        </video>
+        <video class="fixed-size-video-small-two rounded-corners" poster="" id="office2" autoplay controls muted loop playsinline>
+          <source src="./static/images/compare_fics_c.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- 第二行的视频 -->
+      <div class="video-row">
+        <video class="fixed-size-video-small-three rounded-corners" poster="" id="workshop" autoplay controls muted loop playsinline>
+          <source src="./static/images/compare_bonsai_c.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+<strong><p style="font-size:17.2px;">
+  Analysis on anchor features. The clustered anchor features exhibit clues of scene contents, showing that our approach improves the interpretability of 3D-GS model, and has the potential to be scaledup on much larger scenes exploiting reusable features. 
+  More findings can be found in our paper.
+  <!-- <em>We cluster anchor features. The clustered features show clues of scene contents, e.g. the banister, stroller, desk and monitor can be clearly distinguished. Anchors on the wall and floor are also respectively grouped together. This shows that our approach improves the interpretability of 3D-GS model, and has the potential to be scaledup on much larger scenes exploiting reusable features.</p></strong>  -->
+<br><br><br>
+<div class="columns is-centered has-text-centered">
+<img src="./static/images/feature_clustering_web.png" width="1350" height=auto> 
+</div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
