@@ -137,19 +137,18 @@
           <h1 class="title is-1 publication-title">GSDF: 3DGS Meets SDF for Improved Rendering and Reconstruction</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block"><a href="https://scholar.google.com/citations?user=w0Od3hQAAAAJ">Mulin Yu*</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="https://inspirelt.github.io/">Tao Lu*</a><sup>1,3</sup>,</span>
+            <span class="author-block"><a href="https://inspirelt.github.io/">Tao Lu*</a><sup>1</sup>,</span>
             <span class="author-block"><a href="https://eveneveno.github.io/lnxu">Linning Xu</a><sup>2</sup>,</span>
-            <span class="author-block"><a href="https://kam1107.github.io/">Yuanbo Xiangli</a><sup>4</sup>,</span>
-            <span class="author-block"><a href="https://jianglh-whu.github.io/">Lihan Jiang</a><sup>5,1</sup>,</span>
+            <span class="author-block"><a href="https://kam1107.github.io/">Yuanbo Xiangli</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://jianglh-whu.github.io/">Lihan Jiang</a><sup>4,1</sup>,</span>
             <span class="author-block"><a href="https://daibo.info/">Bo Dai</a><sup>1</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup> Shanghai Artificial Intelligence Laboratory</span>,
             <span class="author-block"><sup>2</sup> The Chinese University of Hong Kong</span>,
-            <span class="author-block"><sup>3</sup> Nanjing University</span>
-            <span class="author-block"><sup>4</sup> Cornell University</span>
-            <span class="author-block"><sup>5</sup> University of Science and Technology of China</span>
+            <span class="author-block"><sup>3</sup> Cornell University</span>,
+            <span class="author-block"><sup>4</sup> University of Science and Technology of China</span>
 
           </div>
 
@@ -207,33 +206,39 @@
 
 <section class="hero teaser">
 
+  <div class="container is-max-desktop">
+
+    <div class="hero-body">
+      
+      <div class="content has-text-justified">
+        <div class="columns is-centered has-text-centered">
+        <img src="./static/images/teaser.png"> 
+        </div>
+        <p style="font-size:22px;">
+          <!-- Our GSDF proposes a novel dual-branch framework for learning both high-fidelity rendering and high-quality reconstruction. The quality of these two tasks
+          are enhanced by three ways of mutual guidance (indicated with red lines). -->
+        <b>TL;DR: </b>We introduce <b>GSDF</b>, a dual-branch architecture that combines the benefits of <b>3DGS</b> with <b>SDF</b> to boost both rendering and reconstruction quality.
+
+         </p>
 
 
-<div class="columns is-centered has-text-centered">
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="columns is-centered has-text-centered">
 
       <div class="column is-four-fifths">
         <div class="text-container">
         <p style="font-size:25px;">
-          <b>TL;DR: </b>We introduce <b>GSDF</b>, a dual-branch architecture that combines the benefits of 3D Gaussian Splatting (3DGS) with neural Signed Distance Fields (SDF) to boost both rendering and reconstruction quality.
+          <b>TL;DR: </b>We introduce <b>GSDF</b>, a dual-branch architecture that combines the benefits of <b>3DGS</b> with <b>SDF</b> to boost both rendering and reconstruction quality.
           
         </p>
         </div>
         
 
 
-        <div class="hero-body">
-          
-          
         
-          <div class="content has-text-centered">
-            <div class="columns is-centered has-text-centered"></div>
-            <video class="video" width="90%" id="ablation1" loop="" playsinline="" autoplay="" muted="" src="./static/images/web_bicycle2.mp4" onplay="resizeAndPlay(this)"></video>
-            <canvas class="videoMerge" id="ablation1Merge"></canvas>
-          </div>
-          <p style="font-size:25px;">
-            From <b>randomly</b> initialized points, GSDF can arrive better rendering quality.
-           </p>
-        </div>
       </div>
 
 
@@ -241,27 +246,33 @@
         
       </div>
     </div>
-<br>
-<!-- <div class="container is-max-desktop">
-
-      <div class="hero-body">
-        
-        <div class="content has-text-justified">
-          <div class="columns is-centered has-text-centered">
-          <img src="./static/images/teaser.png"> 
-          </div>
-          <p style="font-size:25px;">
-            Our GSDF proposes a novel dual-branch framework for learning both high-fidelity rendering and high-quality reconstruction. The quality of these two tasks
-            are enhanced by three ways of mutual guidance (indicated with red lines).
-           </p>
+<br> -->
 
 
-        </div>
-      </div>
-    </div>
+  <!-- <div class="columns has-text-centered"> -->
+    <div class="container is-max-desktop">
+  <div class="content is-centered has-text-centered">
+    <!-- <div class="content is-centered"> -->
+    
+    <video class="fixed-size-video" width="100%" id="ablation1" loop="" playsinline="" autoplay="" muted="" src="./static/images/web_bicycle2.mp4" onplay="resizeAndPlay(this)"></video>
+    <canvas class="fixed-size-video" id="ablation1Merge"></canvas>
+ 
+
+</div>
+</div>
+<!-- </div> -->
+  
+<div class="content has-text-centered">
+  <p style="font-size:18px;">
+  
+    From <b>randomly</b> initialized points, GSDF achieves better rendering quality, especially in the texture-less areas (i.e., grass).
+   </p>
+  </div>
 
 
-<br><br> -->
+
+
+<br><br>
 
 <div class="columns is-centered has-text-centered">
     <h2 class="title is-3">Method Overview</h2>
@@ -326,25 +337,26 @@
         </p>  -->
         <div class="content has-text-centered">
           <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon">
+              
               <li class="nav-item">
-                <a class="nav-link active" onclick="objectSceneEvent(0)">Barn</a>
+                <a class="nav-link active" onclick="objectSceneEvent(0)">DrJohnson</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" onclick="objectSceneEvent(1)">DrJohnson</a>
+                <a class="nav-link" onclick="objectSceneEvent(1)">Barn</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" onclick="objectSceneEvent(2)">Playroom</a>
               </li>
           </ul>
           <div class="b-dics" style="font-weight: 600;">
-              <img src="./static/images/reconstruction/Barn_Neuralangelo.png" alt="Neuralangelo">
-              <img src="./static/images/reconstruction/Barn_Instantnsr.png" alt="Instantnsr">
-              <img src="./static/images/reconstruction/Barn_GSDF.png" alt="GSDF">
+              <img src="./static/images/reconstruction/DrJohnson_Neuralangelo.png" alt="Neuralangelo">
+              <img src="./static/images/reconstruction/DrJohnson_Instantnsr.png" alt="Instantnsr">
+              <img src="./static/images/reconstruction/DrJohnson_GSDF.png" alt="GSDF">
   
           </div>
-        <strong><p>
+        <p style="font-size:18px; font-weight: 300;">
             Reconstruction results with <em>30k</em> training iterations.
-          </p></strong>
+          </p>
       </div>    
     </div>
   
@@ -360,25 +372,26 @@
   
         <div class="content has-text-centered">
           <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon_50">
+              
               <li class="nav-item">
-                <a class="nav-link active" onclick="objectSceneEvent_50(0)">Barn</a>
+                <a class="nav-link active" onclick="objectSceneEvent_50(0)">DrJohnson</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" onclick="objectSceneEvent_50(1)">DrJohnson</a>
+                <a class="nav-link" onclick="objectSceneEvent_50(1)">Barn</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" onclick="objectSceneEvent_50(2)">Playroom</a>
               </li>
           </ul>
           <div class="b-dics" style="font-weight: 600;">
-              <img src="./static/images/reconstruction_50w/Barn_Neuralangelo.png" alt="Neuralangelo">
-              <img src="./static/images/reconstruction_50w/Barn_Instantnsr.png" alt="Instantnsr">
-              <img src="./static/images/reconstruction_50w/Barn_GSDF.png" alt="GSDF">
+              <img src="./static/images/reconstruction_50w/DrJohnson_Neuralangelo.png" alt="Neuralangelo">
+              <img src="./static/images/reconstruction_50w/DrJohnson_Instantnsr.png" alt="Instantnsr">
+              <img src="./static/images/reconstruction_50w/DrJohnson_GSDF.png" alt="GSDF">
   
           </div>
-          <strong><p>
+          <p style="font-size:18px; font-weight: 300;">
             Reconstruction results with <em>500k</em> training iterations.
-          </p></strong>
+          </p>
       </div>    
     </div>
   
@@ -393,9 +406,9 @@
   
         <img src="./static/images/anchor.png"> 
   
-        <strong><p>
+        <p style="font-size:18px; font-weight: 300;">
           <em>GSDF</em> yields more surface-aligned primitives with regularized structure.
-        </p></strong>
+        </p> 
   
       </div>
     </div>
@@ -452,7 +465,7 @@
 
 
 
-      <strong><p style="font-size:17.2px;"> Using <em>PhysGaussian</em> to simulate <em>GSDF</em> checkpoints. 
+      <p style="font-size:18px; font-weight: 300;"> Using <em>PhysGaussian</em> to simulate <em>GSDF</em> checkpoints. 
 
         <!-- ranging from synthetic object-level scenes, indoor and outdoor environments, to large-scale urban scenes and landscapes. It's robust on challenging cases, such as texture-less area, insufficient observations, fine-scale details, view-dependent light effects and multi-scale observations.</p></strong> -->
 <br> <br>
@@ -488,7 +501,7 @@
 
       <img src="./static/images/rendering1.png"> 
 
-      <p>
+      <p style="font-size:18px; font-weight: 300;">
         <em>GSDF</em> outperforms baselines, especially in modeling delicate geometries (1st &
         2nd row), texture-less and less observations regions (3rd & 4th row) that are quite
         common in larger scenes.
@@ -506,7 +519,7 @@
 
       <img src="./static/images/rendering2.png"> 
 
-      <p>
+      <p style="font-size:18px; font-weight: 300;">
         More obviously improvements for <em>GSDF</em> are shown when the 3D Gaussians are randomly initialized.
       </p>
 
@@ -531,7 +544,7 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>
+          <strong><p style="font-size:18px">
             We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
           </p>
           <p>
