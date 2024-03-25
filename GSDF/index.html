@@ -217,7 +217,7 @@
         <p style="font-size:22px;">
           <!-- Our GSDF proposes a novel dual-branch framework for learning both high-fidelity rendering and high-quality reconstruction. The quality of these two tasks
           are enhanced by three ways of mutual guidance (indicated with red lines). -->
-        <b>TL;DR: </b>The dual-branch structure introduced in our <b>GSDF</b> provides inherint geometry regularization and accurate guidance for each out, achieving improved rendering and reconstruction quality.
+        <b>TL;DR: </b>The dual-branch structure introduced in our <b>GSDF</b> provides inherent geometry regularization and accurate guidance for each out, improving rendering and reconstruction quality <b>simultaneously</b> .
 
          </p>
 
@@ -355,7 +355,7 @@
   
           </div>
         <p style="font-size:18px; font-weight: 300;">
-            Reconstruction results with <em>30k</em> training iterations.
+            Reconstruction results with <em>30k</em> training iterations. The GS-branch accelerates the convergence of the SDF-branch.
           </p>
       </div>    
     </div>
@@ -390,7 +390,7 @@
   
           </div>
           <p style="font-size:18px; font-weight: 300;">
-            Reconstruction results with <em>500k</em> training iterations.
+            Reconstruction results with <em>500k</em> training iterations. <b>GSDF</b> delivers enhanced precision in reconstruction outcomes.
           </p>
       </div>    
     </div>
@@ -502,9 +502,8 @@
       <img src="./static/images/rendering1.png"> 
 
       <p style="font-size:18px; font-weight: 300;">
-        <em>GSDF</em> outperforms baselines, especially in modeling delicate geometries (1st &
-        2nd row), texture-less and less observations regions (3rd & 4th row) that are quite
-        common in larger scenes.
+        <em>GSDF</em> outperforms baselines. In particularly, it can <b>model delicate geometries</b> (1st &
+        2nd row), <b>anti-blur in texture-less regions and anti-floater in less observations regions</b> (3rd & 4th row).
       </p>
 
     </div>

@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', domReady);
                 let image = sections[i].getElementsByClassName('b-dics__image-container')[0].getElementsByClassName('b-dics__image')[0]
                 switch (idx) {
                     case 0:
-                        image.src = './static/images/reconstruction/Barn';
+                        image.src = './static/images/reconstruction/DrJohnson';
                         break;
                     case 1:
-                        image.src = './static/images/reconstruction/DrJohnson';
+                        image.src = './static/images/reconstruction/Barn';
                         break;
                     case 2:
                         image.src = './static/images/reconstruction/Playroom';
@@ -67,10 +67,10 @@ document.addEventListener('DOMContentLoaded', domReady);
                 let image = sections[i].getElementsByClassName('b-dics__image-container')[0].getElementsByClassName('b-dics__image')[0]
                 switch (idx) {
                     case 0:
-                        image.src = './static/images/reconstruction_50w/Barn';
+                        image.src = './static/images/reconstruction_50w/DrJohnson';
                         break;
                     case 1:
-                        image.src = './static/images/reconstruction_50w/DrJohnson';
+                        image.src = './static/images/reconstruction_50w/Barn';
                         break;
                     case 2:
                         image.src = './static/images/reconstruction_50w/Playroom';
