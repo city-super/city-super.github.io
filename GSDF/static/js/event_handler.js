@@ -18,15 +18,15 @@ document.addEventListener('DOMContentLoaded', domReady);
         function objectSceneEvent(idx) {
             let dics = document.querySelectorAll('.b-dics')[0]
             let sections = dics.getElementsByClassName('b-dics__section')
-            let imagesLength = 3
+            let imagesLength = 2
             for (let i = 0; i < imagesLength; i++) {
                 let image = sections[i].getElementsByClassName('b-dics__image-container')[0].getElementsByClassName('b-dics__image')[0]
                 switch (idx) {
                     case 0:
-                        image.src = './static/images/reconstruction/DrJohnson';
+                        image.src = './static/images/reconstruction/Barn';
                         break;
                     case 1:
-                        image.src = './static/images/reconstruction/Barn';
+                        image.src = './static/images/reconstruction/DrJohnson';
                         break;
                     case 2:
                         image.src = './static/images/reconstruction/Playroom';
@@ -34,13 +34,11 @@ document.addEventListener('DOMContentLoaded', domReady);
                     
                 }
                 switch (i) {
+                    
                     case 0:
-                        image.src = image.src + '_Neuralangelo.png';
-                        break;
-                    case 1:
                         image.src = image.src + '_Instantnsr.png';
                         break;
-                    case 2:
+                    case 1:
                         image.src = image.src + '_GSDF.png';
                         break;
                     
@@ -62,15 +60,15 @@ document.addEventListener('DOMContentLoaded', domReady);
         function objectSceneEvent_50(idx) {
             let dics = document.querySelectorAll('.b-dics')[1]
             let sections = dics.getElementsByClassName('b-dics__section')
-            let imagesLength = 3
+            let imagesLength = 2
             for (let i = 0; i < imagesLength; i++) {
                 let image = sections[i].getElementsByClassName('b-dics__image-container')[0].getElementsByClassName('b-dics__image')[0]
                 switch (idx) {
                     case 0:
-                        image.src = './static/images/reconstruction_50w/DrJohnson';
+                        image.src = './static/images/reconstruction_50w/Barn';
                         break;
                     case 1:
-                        image.src = './static/images/reconstruction_50w/Barn';
+                        image.src = './static/images/reconstruction_50w/DrJohnson';
                         break;
                     case 2:
                         image.src = './static/images/reconstruction_50w/Playroom';
@@ -78,13 +76,11 @@ document.addEventListener('DOMContentLoaded', domReady);
                     
                 }
                 switch (i) {
+                  
                     case 0:
-                        image.src = image.src + '_Neuralangelo.png';
-                        break;
-                    case 1:
                         image.src = image.src + '_Instantnsr.png';
                         break;
-                    case 2:
+                    case 1:
                         image.src = image.src + '_GSDF.png';
                         break;
                     
