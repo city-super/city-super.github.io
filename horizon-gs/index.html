@@ -1,0 +1,335 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Horizon-GS: Unified 3D Gaussian Splatting for Large-Scale Aerial-to-Ground Scenes">
+  <meta name="keywords" content="Horizon-GS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horizon-GS: Unified 3D Gaussian Splatting for Large-Scale Aerial-to-Ground Scenes</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/video-comparison.js"></script>
+
+  <style>
+        .container {
+            width: 80%; 
+            margin: auto; 
+        }
+
+        .responsive-video {
+            width: 45%; 
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px;
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: 700px; 
+            height: auto; 
+        }
+        .rounded-corners {
+    border-radius: 10px; 
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; 
+            width: auto;   
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;        
+            justify-content: center; 
+        }
+        .video-container video {
+            width: 30%;           
+            margin: 5px;         
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 20px; 
+  }
+
+  .fixed-size-video-small {
+    width: 33%; 
+            height: auto; 
+  }
+  .fixed-size-video-small-two {
+    width: 800px; 
+            height: auto; 
+  }
+  .fixed-size-video-small-three {
+    width: 1340px; 
+            height: auto; 
+  }
+  
+  @media screen and (max-width: 768px) {
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<style>
+        .text-container {
+            max-width: 1070px; 
+            margin: 0 auto;    
+            padding: 20px;     
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Horizon-GS: Unified 3D Gaussian Splatting for Large-Scale Aerial-to-Ground Scenes</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://jianglh-whu.github.io/">Lihan Jiang*</a><sup>1,3</sup>,</span>
+            <span class="author-block"><a href="https://github.com/tongji-rkr">Kerui Ren*</a><sup>2,3</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=w0Od3hQAAAAJ">Mulin Yu</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://eveneveno.github.io/lnxu">Linning Xu</a><sup>4</sup>,</span> <br>
+            <span class="author-block"><a href="https://jtdong.com/">Junting Dong</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://inspirelt.github.io/">Tao Lu</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.co.uk/citations?user=r6CvuOUAAAAJ&hl=en">Feng Zhao</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="http://dahua.site/">Dahua Lin</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="https://daibo.info/">Bo Dai</a><sup>6,3</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> University of Science and Technology of China </span>, 
+            <span class="author-block"><sup>2</sup> Shanghai Jiao Tong University</span>, 
+            <span class="author-block"><sup>3</sup> Shanghai Artificial Intelligence Laboratory </span>, 
+            <span class="author-block"><sup>4</sup> The Chinese University of Hong Kong </span> <br>
+            <span class="author-block"><sup>5</sup> Brown University </span> 
+            <span class="author-block"><sup>6</sup> The University of Hong Kong </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="text-container">
+        <p style="font-size:22px;">
+          TL;DR: We introduce <b>Horizon</b>-GS, tackles the unified reconstruction and rendering for aerial and street views with a new training strategy, overcoming viewpoint discrepancies to generate high-fidelity scenes.
+          <!-- Our model dynamically selects the appropriate level from the set of multi-resolution anchor points, ensuring <b>consistent</b> rendering performance with adaptive LOD adjustments while maintaining <b>high-fidelity</b> rendering. -->
+        </p>
+      </div>
+      <video class="fixed-size-video rounded-corners" id="supp video" autoplay loop muted playsinline controls>
+        <source src="./static/images/demo.mp4" type="video/mp4">
+      </video>
+      
+      <div class="text-container">
+        <p style="font-size:22px; width: 95%; margin: auto;">
+          Our method delivers an immersive and seamless experience for city roaming while achieving high-quality rendering and reconstruction of aerial-to-ground scenes.
+        </p>  
+      </div>
+
+      <!-- <br><br> -->
+
+      <div class="content has-text-centered" style="width: 80%; margin: auto;">
+        <img src="./static/images/Teaser.png"> 
+      </div>
+
+      <div class="text-container">
+        <p style="font-size:22px; width: 95%; margin: auto;">
+          The colored camera trajectories depict novel viewpoints, with the reconstructed mesh overlaid on the scene, while the surrounding images display the predicted views for each trajectory.
+        </p>  
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="hero-body">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p style="font-size:18px;">
+              Seamless integration of both aerial and street view images remains a significant challenge in neural scene reconstruction and rendering. 
+              Existing methods predominantly focus on single domain, limiting their applications in immersive environments, which demand extensive free view exploration with large view changes both horizontally and vertically.
+              We introduce Horizon-GS, a novel approach built upon Gaussian Splatting techniques, tackles the unified reconstruction and rendering for aerial and street views. 
+              Our method addresses the key challenges of combining these perspectives with a new training strategy, overcoming viewpoint discrepancies to generate high-fidelity scenes. 
+              We also curate a high-quality aerial-to-ground views dataset encompassing both synthetic and real-world scene to advance further research.
+              Experiments across diverse urban scene datasets confirm the effectiveness of our method.
+            </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+
+  <br><br>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <div class="hero-body">
+          <h2 class="title is-3">Method Overview</h2>
+          <img src="./static/images/pipeline.png"> 
+          <div class="content has-text-justified">
+            <p style="margin-top: 30px; font-size:18px;">
+              <b> Illustration of our proposed Horizon-GS: </b>  We divide large-scale scenes into chunks. For each chunk, 
+              we initialize LOD-structured anchors and conduct the coarse-to-fine training process. Specifically, the coarse stage reconstructs the overall scene, 
+              while the fine stage enhances street view details (highlighted in <span style="color: rgb(192, 113, 255);">purple</span>). We can derive RGB, depth, 
+              and normal images by utilizing different primitive attributes (2D/3D Gaussians) with a single shared underlying structure.
+            </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <div class="hero-body">
+          <h2 class="title is-3">Data Capture</h2>
+          <img src="./static/images/data.png"> 
+          <div class="content has-text-justified">
+            <p style="margin-top: 30px; font-size:18px;">
+              <b> Visualization of our constructed dataset: </b>  All the 7 scenes contain calibrated aerial and street view images. 
+              We illustrate the scenes with the point clouds and the corresponding image capture poses. The trajectory of aerial views is shown in <span style="color: rgb(192, 113, 255);">purple</span>, 
+              while street views are represented in <span style="color: rgb(250, 176, 26);">yellow</span>. Our dataset contains 5 synthetic scenes (a-e) and 2 real scenes (f-g).
+            </p>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <!-- <br><br> -->
+  
+</section>
+
+<section class="section">
+  <div class="columns is-centered ">
+    <div class="column is-full-width">
+      <h3 class="title is-3 has-text-centered" style="margin-bottom: 40px">Results</h2>
+    </div>
+  </div>
+
+  <div class="hero-body" style="margin-top: -60px;">
+    <div class="container is-max-desktop" style="text-align:left">
+      <h3 class="title is-4">Rendering Performance</h3>
+      <p style="font-size:18px; font-weight: 300;">        
+        Compared to baselines, <em>Horizon-GS</em> successfully captures fine details in the scene, particularly for objects with thin structures such as trees, decorative texts, etc, from delicate scenes (a) to large-scale scenes (b).
+      </p>
+      <br>
+      <div class="content has-text-centered" style="width: 100%; margin: auto;">
+        <img src="./static/images/main.png"> 
+      </div>
+    </div>
+    <div class="container is-max-desktop" style="text-align:left; margin-top: 30px;">
+      <h3 class="title is-4">Surface Performance</h3>
+      <p style="font-size:18px; font-weight: 300;">        
+        Thanks to the two-stage training approach, <em>Horizon-GS</em> can  delivers geometrically accurate, and artifact-free reconstruction. In contrast, 2D-GS introduces artifacts, resulting in incomplete and lackluster geometry.
+      </p>
+      <br>
+      <div class="content has-text-centered" style="width: 100%; margin: auto;">
+        <img src="./static/images/surface.png"> 
+      </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
