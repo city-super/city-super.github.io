@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="description"
+        content="Proc-GS: Procedural Building Generation for City Assembly with 3D Gaussians">
+  <meta name="keywords" content="HumanVid, Human Image Animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proc-GS: Procedural Building Generation for City Assembly with 3D Gaussians</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Proc-GS: Procedural Building Generation for City Assembly with 3D Gaussians</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yixuanli98.github.io/">Yixuan Li</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=8AubXI4AAAAJ&hl=zh-CN">Xingjian Ran</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://eveneveno.github.io/lnxu/">Linning Xu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://inspirelt.github.io/">Tao Lu</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://mulinyu.github.io/">Mulin Yu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhenzhiwang.github.io/">Zhenzhi Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://kam1107.github.io/">Yunabo Xiangli</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://dahua.site/">Dahua Lin</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://daibo.info/">Bo Dai</a><sup>5,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong,</span>
+            <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory,</span>
+            <span class="author-block"><sup>3</sup>Brown University,</span>
+            <span class="author-block"><sup>4</sup>Cornell University</span>
+            <span class="author-block"><sup>5</sup>The University of Hong Kong</span>
+          </div>
+
+          <!-- <h5 class="title is-5 publication-title">NeurIPS D&B Track 2024</h5> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2407.17438"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zhenzhiwang/HumanVid"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/zhenzhiwang/HumanVid?tab=readme-ov-file#news"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline controls height="100%">
+        <source src="./static/videos/building_editing.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <p>Building Edit</p>
+        <!-- <p><b>Videos may take a few seconds to load.</b></p> -->
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline controls height="100%">
+        <source src="./static/videos/city.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <p>Urban Roaming</p>
+        <!-- <p><b>Videos may take a few seconds to load.</b></p> -->
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/teaser.png" alt="MY ALT TEXT"/>
+          <p>
+            Buildings are primary components of cities, often featuring repeated elements such as windows and doors. Traditional 3D building asset creation is labor-intensive and requires specialized skills to develop design rules. Recent generative models for building creation often overlook these patterns, leading to low visual fidelity and limited scalability. Drawing inspiration from procedural modeling techniques used in the gaming and visual effects industry, our method, Proc-GS, integrates procedural code into the 3D Gaussian Splatting (3D-GS) framework, leveraging their advantages in high-fidelity rendering and efficient asset management from both worlds. By manipulating procedural code, we can streamline this process and generate an infinite variety of buildings. This integration significantly reduces model size by utilizing shared foundational assets, enabling scalable generation with precise control over building assembly. We showcase the potential for expansive cityscape generation while maintaining high rendering fidelity and precise control on both real and synthetic cases.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview of ProcGS</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/pipeline.png" alt="MY ALT TEXT"/>
+          <p>
+            Our pipeline consists of two stages: (1) Asset Acquisition: We acquire the base assets in the training process of the 3D-GS. These assets are then assembled according to procedural code and add variance assets to create a complete building, which is used for novel view synthesis with Gaussian Splatting. (2) Asset Assembly: We use the building generator and city layout generator to assemble these base assets into a vivid 3D city. Users provide basic urban spatial data to city layout generator to automatically predict other roads and building layouts. The building generator then assembles base assets into complete buildings using procedural code and predicted building parameters.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/qualitative.png" alt="MY ALT TEXT"/>
+          <p>
+            <b>Reconstruction Results</b>. The left section shows results from three real-world scenes, while the right section presents results from the MatrixBuilding dataset. Proc-GS achieves rendering quality comparable to 3D-GS. Green boxes in each image highlight pairs of instantiations that share the same base assets, illustrating our method's capability to effectively model variations in geometry and appearance.
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+        <div class="content has-text-justified">
+          <img src="static/images/city_generation.png" alt="MY ALT TEXT"/>
+          <p>
+            <b>City Generation Results</b>. Our Proc-GS framework learns base assets during the training process of 3D-GS using procedural codes, which are then manipulated to assemble these assets into a cohesive 3D city. Compared to other generation-based methods, Proc-GS demonstrates superior visual quality in both aerial and street-level views, especially in architectural details. We recommend zoom-in for detailed inspection.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4">Real Building Edit</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-pexels-h-1">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/gulous_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-pexels-h-2">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shanhengs_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-pexels-h-3">
+          <video poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/wukangs_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-pexels-h-15">
+          <!-- <video poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/pexels-h-15.mp4"
+                    type="video/mp4">
+          </video> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4">Synthetic Building Edit</h2>
+      <!-- <p>All the cases shown below are test set results. Horizontal and vertical videos are generated by the same model weights. You can use the maximize button in the bottom right corner of the video to play the video in full screen mode to observe more details.</p> -->
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/procgs_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NYAA_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/CHH_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NYH_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4">Cross-scene Building Generation</h2>
+      <!-- <p>From left to right: input image, human pose condition, our result, groundtruth video.</p> -->
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-pexels-v-1">
+          <video poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/SFA_NYH2_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-pexels-v-2">
+          <video poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/SFA_NYH_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-pexels-v-3">
+          <video poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/CHD_NYH_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-pexels-v-4">
+          <video poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/NYH_SFA_concat.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!--
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+      -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies's website code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
