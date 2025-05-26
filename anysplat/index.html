@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="description"
+        content="AnySplat: Feed-forward 3D Gaussian Splatting from Unconstrained Views">
+  <meta name="keywords" content="HumanVid, Human Image Animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AnySplat: Feed-forward 3D Gaussian Splatting from Unconstrained Views</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <!-- MathJax for LaTeX support -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">AnySplat: Feed-forward 3D Gaussian Splatting from Unconstrained Views</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jianglh-whu.github.io/">Lihan Jiang*</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://myc634.github.io/yuchengmao/">Yucheng Mao*</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Yichen Jin</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://eveneveno.github.io/lnxu/">Linning Xu</a><sup>3</sup>,
+            </span>
+              <a href="https://scholar.google.com.hk/citations?user=D8VMkA8AAAAJ&hl=en">Xudong Xu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://mulinyu.github.io/">Mulin Yu</a><sup>2</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://scholar.google.com.hk/citations?user=5kW5apkAAAAJ&hl=zh-CN">Kerui Ren</a><sup>2,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://inspirelt.github.io/">Tao Lu</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://oceanpang.github.io/">Jiangmiao Pang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.uk/citations?user=r6CvuOUAAAAJ&hl=en/">Feng Zhao</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://dahua.site/">Dahua Lin</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://daibo.info/">Bo Dai</a><sup>5</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>The University of Science and Technology of China,</span>
+            <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory,</span>
+            <span class="author-block"><sup>3</sup>The Chinese University of Hong Kong,</span>
+            <span class="author-block"><sup>4</sup>Brown University,</span>
+            <span class="author-block"><sup>5</sup>The University of Hong Kong</span>
+          </div>
+
+          <!-- <h5 class="title is-5 publication-title">NeurIPS D&B Track 2024</h5> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="text-container" style="margin-bottom: 1rem;">
+      <p style="font-size:20px;">
+        TL;DR: We introduce <b>AnySplat</b>, a feed‑forward network for novel‑view synthesis from uncalibrated image collections in both sparse‑ and dense‑view scenarios.
+      </p>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline controls height="100%">
+        <source src="./static/videos/teaser_video.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+        <p><strong>Zero-Shot</strong> Inference Results</p>
+        <!-- <p><b>Videos may take a few seconds to load.</b></p> -->
+      </h2>
+    </div>
+  </div>
+</section>
+
+<style>
+.section {
+    padding: 1rem 1.5rem;
+}
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/teaser.png" alt="MY ALT TEXT"/>
+          <br>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            We introduce AnySplat, a feed‑forward network for novel‑view synthesis from uncalibrated image collections. In contrast to traditional neural‑rendering pipelines that demand known camera poses and per‑scene optimization, or recent feed‑forward methods that buckle under the computational weight of dense views—our model predicts everything in one shot. 
+            A single forward pass yields a set of 3D Gaussian primitives encoding both scene geometry and appearance, and the corresponding camera intrinsics and extrinsics for each input image. This unified design scales effortlessly to casually captured, multi‑view datasets without any pose annotations. 
+            In extensive zero‑shot evaluations, AnySplat matches the quality of pose‑aware baselines in both sparse‑ and dense‑view scenarios while surpassing existing pose‑free approaches. Moreover, it greatly reduce rendering latency compared to optimization‑based neural fields, bringing real‑time novel‑view synthesis within reach for unconstrained capture settings.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview of AnySplat</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center; margin: 1rem 0;">
+            <img src="static/images/pipeline.png" alt="MY ALT TEXT"/>
+          </div>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            Starting from a set of uncalibrated images, a transformer-based geometry encoder is followed by three decoder heads: \(\mathrm{F}_G\), \(\mathrm{F}_D\), and \(\mathrm{F}_C\), which respectively predict the Gaussian parameters (\(\boldsymbol{\mu}, \sigma, \boldsymbol{r}, \boldsymbol{s}, \boldsymbol{c}\)), the depth map \(D\), and the camera poses \(p\). 
+  These outputs are used to construct a set of pixel-wise 3D Gaussians, which is then voxelized into pre-voxel 3D Gaussians with the proposed Differentiable Voxelization module. From the voxelized 3D Gaussians, multi-view images and depth maps are subsequently rendered. The rendered images are supervised using an RGB loss against the ground truth image, while the rendered depth maps, along with the decoded depth \(D\) and camera poses \(p\), are used to compute geometry losses. The geometries are supervised by pseudo-geometry priors (\(\tilde{D}, \tilde{p}\)) obtained by the pretrained VGGT.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/main_results.png" alt="MY ALT TEXT"/>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <b>Example visualization</b> of AnySplat reconstruction and novel-view synthesis. From top to bottom, the number of input images increases—from extremely sparse to medium and dense captures, while the scene scale grows from object-centric setups through mid-scale trajectories to large-scale indoor and outdoor environments. For each setting, we display the input views, the reconstructed 3D Gaussians, the corresponding ground-truth renderings, and example novel-view renderings.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+        <div class="content has-text-justified">
+          <img src="static/images/qualitative.png" alt="MY ALT TEXT"/>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <b>Qualitative comparisons</b> against baseline methods: for sparse-view inputs, we benchmark against the state-of-the-art FLARE and NoPoSplat; for dense-view inputs, we include 3DGS and MipSplatting as representative comparisons.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<section class="hero is-small" style="margin-top: 60px; margin-bottom: 50px;">
+  <div class="columns is-centered ">
+    <div class="column is-full-width">
+      <h3 class="title is-3 has-text-centered" style="margin-bottom: 0px">Zero-Shot Inference Results</h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4">BungeeNeRF (8 views)</h2>
+      <!-- <p>All the cases shown below are test set results. Horizontal and vertical videos are generated by the same model weights. You can use the maximize button in the bottom right corner of the video to play the video in full screen mode to observe more details.</p> -->
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_amsterdam.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="steve" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_bilbao.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_chicago.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_pompidou.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_quebec.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_rome.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/BungeeNeRF/pred_pompidou.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4">DTU (8 views)</h2>
+      <!-- <p>All the cases shown below are test set results. Horizontal and vertical videos are generated by the same model weights. You can use the maximize button in the bottom right corner of the video to play the video in full screen mode to observe more details.</p> -->
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline>
+            <source src="./static/videos/DTU/pred_dtu_scan55_16.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="steve" autoplay controls muted loop playsinline>
+            <source src="./static/videos/DTU/pred_dtu_scan65_32.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline>
+            <source src="./static/videos/DTU/pred_dtu_scan69.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/DTU/pred_dtu_scan106_16.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/DTU/pred_dtu_scan110_16.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/DTU/pred_dtu_scan114_16.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4">LLFF (8 views)</h2>
+      <!-- <p>All the cases shown below are test set results. Horizontal and vertical videos are generated by the same model weights. You can use the maximize button in the bottom right corner of the video to play the video in full screen mode to observe more details.</p> -->
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline>
+            <source src="./static/videos/LLFF/pred_fern.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="steve" autoplay controls muted loop playsinline>
+            <source src="./static/videos/LLFF/pred_flower.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline>
+            <source src="./static/videos/LLFF/pred_fortress.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/LLFF/pred_orchids.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/LLFF/pred_room.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
+            <source src="./static/videos/LLFF/pred_trex.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<br>
+<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=X_zyQ2G3wm2LWlqa-ij5tPm9N1z9-aMWzPYdwUxXwxw&cl=ffffff&w=200"></script>
+<br>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!--
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+      -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies's website code</a>.
+          </p>
+          <p>
+            We thank <a href="https://jixiii.github.io/">Minyue Dai</a> for producing the high-quality demo video.
+We also thank <a href="https://scholar.google.com.hk/citations?user=rVSzbhUAAAAJ&hl=zh-CN">Yuantao Chen</a> for providing data support and engaging in insightful discussions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
