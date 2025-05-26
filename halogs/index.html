@@ -1,0 +1,364 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="HaloGS: Loose Coupling of Compact Geometry and Gaussian Splats for 3D Scenes">
+  <meta name="keywords" content="HaloGS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HaloGS: Loose Coupling of Compact Geometry and Gaussian Splats for 3D Scenes</title>
+
+
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/git_icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/video-comparison.js"></script>
+
+  <style>
+        .container {
+            width: 80%; 
+            margin: auto; 
+        }
+
+        .responsive-video {
+            width: 45%;
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px; 
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: auto; 
+            height: 300px; 
+        }
+        .rounded-corners {
+    border-radius: 10px; 
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; 
+            width: auto;   
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;         
+            justify-content: center; 
+        }
+        .video-container video {
+            width: 30%;          
+            margin: 5px;          
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 20px; 
+  }
+
+  .fixed-size-video-small {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-two {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-three {
+    width: 500px; 
+            height: 200; 
+  }
+  
+
+  @media screen and (max-width: 768px) {
+
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+
+<style>
+
+
+.row-flex {
+  display: flex;
+  justify-content: center;
+  gap: 200px;  
+  margin-bottom: 40px;
+}
+.flex-item {
+  flex: 1 1 0;
+  max-width: 50%;  
+  min-width: 320px; 
+}
+@media (max-width: 900px) {
+  .flex-item {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+
+</style>
+
+
+<style>
+        .text-container {
+            max-width: 1070px; 
+            margin: 0 auto;    
+            padding: 20px;     
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">HaloGS: Loose Coupling of Compact Geometry and Gaussian Splats for 3D Scenes</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+
+ 
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="text-container">
+        <p style="font-size:22px;">
+          TL;DR: We introduce <b>HaloGS</b>, a dual-representation that loosely couples triangles for geometry with Gaussians for appearance, enabling high-fidelity rendering with compact geometry.
+        </p>
+      </div>
+      <video class="fixed-size-video rounded-corners" id="supp video" style="width: 70%; margin: auto;" autoplay loop muted playsinline controls>
+        <source src="./static/images/demo1.mp4" type="video/mp4">
+      </video>
+      
+      <div class="text-container">
+        <p style="font-size:22px; width: 95%; margin: auto;">
+        </p>  
+      </div>
+
+      <br> 
+
+      <div class="content has-text-centered" style="width: 70%; margin: auto;">
+        <img src="./static/images/teaser.png"> 
+      </div> 
+
+      <div class="text-container">
+        <p style="font-size:22px; width: 95%; margin: auto;">
+         Our design yields a compact yet expressive model capable of photo-realistic rendering across both indoor and outdoor environments, seamlessly adapting to varying levels of scene complexity.
+        </p>  
+      </div>
+    </div>
+  </div>
+
+ 
+<br><br>
+
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Method Overview</h2>
+</div>
+
+
+
+<div class="container is-max-desktop">
+
+      <div class="hero-body">
+        <div class="content has-text-justified">
+
+          <img src="./static/images/pipeline.png"> 
+
+          <p>
+            <b> Overview of HaloGS.</b> Our proposed dual-representation is illustrated in (a), where learnable triangles explicitly fit the scene geometry, and neural Gaussians decoded from these triangles render the appearance. In (b), we depict our coarse-to-fine training strategy: during the coarse stage, monocular geometric priors supervise the positions and shapes of the triangles. Subsequently, in the fine stage, neural Gaussians decoded from these half-trained triangles are optimized using ground truth images. Concurrently, depth and normal maps rendered from the neural Gaussians provide additional refinement feedback to further enhance the triangle representation.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+<br><br>
+
+
+<section class="hero teaser">
+
+ 
+  
+  <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Reconstruction Results</h2>
+  </div>
+  <br>
+
+  
+  <div class="container is-max-desktop">
+  
+  <div class="row-flex">
+  <div class="content has-text-centered flex-item">
+    <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-1">
+      <li class="nav-item">
+        <a class="nav-link active" onclick="objectSceneEvent_RE(0)">Room1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" onclick="objectSceneEvent_RE(1)">Room2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" onclick="objectSceneEvent_RE(2)">Campus</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" onclick="objectSceneEvent_RE(3)">CBD</a>
+      </li>
+    </ul>
+    <div class="b-dics" style="font-weight: 600;">
+      <img src="./static/images/reconstruction/room1_ours_tri.jpg" alt="Ours (Triangle Soup)">
+      <img src="./static/images/reconstruction/room1_2dgs_mesh.jpg" alt="2DGS (Mesh)">
+    </div>
+    <strong><p>Representation of scene geometry.</p></strong>
+  </div>
+
+  <div class="content has-text-centered flex-item">
+    <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-2">
+      <li class="nav-item">
+        <a class="nav-link active" onclick="objectSceneEvent_Plane(0)">Room1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" onclick="objectSceneEvent_Plane(1)">Room2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" onclick="objectSceneEvent_Plane(2)">Campus</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" onclick="objectSceneEvent_Plane(3)">CBD</a>
+      </li>
+    </ul>
+    <div class="b-dics" style="font-weight: 600;">
+      <img src="./static/images/planes/room1_ours_plane.jpg" alt="Ours (Plane)">
+      <img src="./static/images/planes/room1_2dgs_plane.jpg" alt="2DGS (Plane)">
+    </div>
+    <strong><p>Planar shape extraction.</p></strong>
+  </div>
+</div>
+  
+  </div>
+
+
+  <br>
+
+
+
+  <div class="container is-max-desktop">
+  
+    <div class="hero-body">
+      <div class="content has-text-centered">
+  
+        <img src="./static/images/compact_mesh.png"> 
+  
+         <p>
+          Starting from the optimized triangles, we reconstruct compact mesh. This figure illustrates the resulting mesh alongside the triangle soup and planar primitives, demonstrating how <b>HaloGS</b> accurately preserves geometric fidelity.
+        </p> 
+  
+      </div>
+    </div>
+  </div>
+ 
+  <br>
+  
+  <div class="container is-max-desktop">
+  
+    <div class="hero-body">
+      <div class="content has-text-centered">
+  
+        <img src="./static/images/more_geo_other.jpg"> 
+  
+         <p>
+          <b>HaloGS</b> demonstrates robust applicability across diverse scenarios, including both indoor and outdoor environments.
+        </p> 
+  
+      </div>
+    </div>
+  </div>
+      
+  </section>
+
+</section>
+
+<br><br>
+
+<section class="hero teaser">
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Rendering Results</h2>
+</div>
+<br> 
+
+<div class="container is-max-desktop">
+
+  <div class="hero-body">
+    <div class="content has-text-centered">
+
+      <img src="./static/images/rendering.jpg"> 
+
+      <p>
+        <b>HaloGS</b> outperforms baselines, faithfully reconstructing fine structures and complex planar surfaces, such as wall-mounted mirrors and intricate ceiling ornaments, which existing baselines struggle to capture.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+
+    
+</section>
+
+</body>
+</html>
