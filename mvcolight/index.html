@@ -1,0 +1,307 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MV-CoLight: Efficient Object Compositing with Consistent Lighting and Shadow Generation">
+  <meta name="keywords" content="MV-CoLight">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MV-CoLight: Efficient Object Compositing with Consistent Lighting and Shadow Generation</title>
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon_barn.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/video-comparison.js"></script>
+
+  <style>
+        .container {
+            width: 80%; 
+            margin: auto; 
+        }
+
+        .responsive-video {
+            width: 45%;
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px; 
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: auto; 
+            height: 300px; 
+        }
+        .rounded-corners {
+    border-radius: 10px; 
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; 
+            width: auto;   
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;         
+            justify-content: center; 
+        }
+        .video-container video {
+            width: 30%;          
+            margin: 5px;          
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 20px; 
+  }
+
+  .fixed-size-video-small {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-two {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-three {
+    width: 500px; 
+            height: 200; 
+  }
+  
+
+  @media screen and (max-width: 768px) {
+
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<style>
+        .text-container {
+            max-width: 1070px; 
+            margin: 0 auto;    
+            padding: 20px;     
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MV-CoLight: Efficient Object Compositing with Consistent Lighting and Shadow Generation</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+
+
+<div class="columns is-centered has-text-centered">
+
+      <div class="column is-four-fifths">
+        <div class="text-container">
+        <!-- <p style="font-size:25px;"> -->
+        <p style="font-size:20px;">
+          <b>TL;DR: </b>We introduce <b>MV-CoLight</b>, a two-stage framework for illumination-consistent object compositing in both 2D images and 3D scenes.
+          
+        </p>
+        </div>
+        
+
+<div class="container is-max-desktop">
+        <div class="hero-body">
+          
+          
+        
+          <!-- <div class="content has-text-centered"> -->
+          <div class="content has-text-justified">
+
+            <div class="columns is-centered has-text-centered"></div>
+            <img src="./static/images/teaser.jpg"> 
+          </div>
+          <!-- <p style="font-size:25px;"> -->
+          <p style="font-size:20px;">
+            Illustration of our object compositing pipeline with harmonization and relighting using MV-CoLight. In (a), we show a composite scene with visually inconsistent inserted objects. Applying our MV-CoLight method in (b), we generate realistic lighting, shadows, and harmonious integration of objects into the 3D scene. Panel (c) highlights clear visual differences before and after harmonization, accompanied by consistent novel view renderings below.
+           </p>
+        </div>
+      </div>
+
+
+</div>
+        
+      </div>
+    </div>
+<br>
+
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Method Overview</h2>
+</div>
+
+
+
+<div class="container is-max-desktop">
+
+      <div class="hero-body">
+        <!-- <h2 class="title is-3">Framework</h2> -->
+        <div class="content has-text-justified">
+
+          <img src="./static/images/pipeline.jpg"> 
+
+          <p>
+            <b>Pipeline of MV-CoLight.</b>  In (a), we insert a white puppy as the composite object onto the table between basketballs, and render multi-view inharmonious images, background-only images, and depth maps using a camera trajectory moving from distant to close-up positions. Subsequently in (b), we input a single-view data into the 2D object compositing model, which processes the data through multiple Swin Transformer blocks to output the harmonized result. Finally in (c), we project the multi-view features from 2D models into Gaussian space via Φ(·), combine them with the original inharmonious Gaussian colors projected into 2D Gaussian color space through Ψ(·), and then feed them into the 3D object compositing model. The model outputs harmonized Gaussian colors and computes rendering loss by incorporating Gaussian shape attributes.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+<br><br>
+
+
+<section class="hero teaser">
+
+ 
+  
+  <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Harmonized Results</h2>
+  </div>
+  <br>
+  <br></br>
+  
+ 
+
+<div class="container is-max-desktop">
+
+  <div class="hero-body">
+
+      <img src="./static/images/Single-view.jpg"> 
+
+      <p>
+       Single-view qualitative comparison with SOTA methods on our proposed dataset and public datasets, with differences highlighted via colored patches. Compared to existing baselines, our method successfully generates illumination consistent with the background and physically plausible shadows while decoupling highlights from inserted objects, demonstrating generalization capabilities on out-of-domain datasets. The method in the green box does not incorporate background images as input, whereas the others do.</p>
+      </p>
+
+  </div>
+</div>
+
+<br><br>
+
+
+    
+ 
+  
+  
+<div class="container is-max-desktop">
+
+  <div class="hero-body">
+
+
+      <img src="./static/images/Multi-view.jpg"> 
+
+      <p>
+        Multi-view qualitative comparison with SOTA methods on our proposed dataset and real captured scenes, with differences highlighted via colored patches. Our method synthesizes plausible illumination and shadows while ensuring multi-view consistency. The method in the green box does not incorporate background images as input, whereas the others do.
+      </p>
+
+  </div>
+</div>
+  
+<div class="container is-max-desktop">
+  
+    <div class="hero-body">
+  
+        <img src="./static/images/RealCapture.jpg"> 
+  
+        <p>
+          We evaluate our method on real-world scenes captured under varying illumination with six cameras arranged in a circular array. MV-CoLight consistently harmonizes object colors, produces physically plausible lighting interactions, and accurately casts shadows across all viewpoints.
+        </p> 
+
+    </div>
+  </div>
+      
+  </section>
+
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Luminous Objects</h2>
+</div>
+<br>
+</section>
+
+
+
+
+<section class="hero teaser">
+
+<div class="container is-max-desktop">
+
+  <div class="hero-body">
+
+      <img src="./static/images/Light.jpg"> 
+
+      <p>
+        Visual results of inserting luminous objects. Our method successfully simulates the illumination effects of luminous spheres within the scene environment.
+      </p>
+
+  </div>
+</div>
+
+<br><br>
+
+
+    
+</section>
+
+
+</body>
+</html>
