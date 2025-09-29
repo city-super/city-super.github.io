@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="description"
+        content="ARTDECO: Towards Efficient and High-Fidelity On-the-Fly 3D Reconstruction with Structured Scene Representation">
+  <meta name="keywords" content="3D Reconstruction; On-the-Fly Reconstruction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARTDECO: Towards Efficient and High-Fidelity On-the-Fly 3D Reconstruction with Structured Scene Representation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <!-- MathJax for LaTeX support -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ARTDECO: Towards Efficient and High-Fidelity On-the-Fly 3D Reconstruction with Structured Scene Representation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://lightingooo.github.io/">Guanghao Li*</a><sup>1,2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cskrren.github.io/">Kerui Ren*</a><sup>2,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://eveneveno.github.io/lnxu/">Lining Xu</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/QuantumEPR">Zhewen Zheng</a><sup>6</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=V4miywEAAAAJ">Changjian Jiang</a><sup>2,7</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://gaoxin492.github.io/">Xin Gao</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://daibo.info/">Bo Dai</a><sup>8</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=9pUCoOkAAAAJ&hl=en">Jian Pu</a><sup>1</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://mulinyu.github.io/">Mulin Yu</a><sup>2</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://oceanpang.github.io/">Jiangmiao Pang</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Fudan University,</span>
+            <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory,</span>
+            <span class="author-block"><sup>3</sup>Shanghai Innovation Institute,</span>
+            <br>
+            <span class="author-block"><sup>4</sup>Shanghai Jiao Tong University,</span>
+            <span class="author-block"><sup>5</sup>The Chinese University of Hong Kong,</span>
+            <br>
+            <span class="author-block"><sup>6</sup>Carnegie Mellon University</span>
+            <span class="author-block"><sup>7</sup>Zhejiang University</span>
+            <span class="author-block"><sup>8</sup>The University of Hong Kong</span>
+          </div>
+          <br>
+          <div class="is-size-6 publication-authors">
+            * denotes corresponding author.
+          </div>
+
+          <!-- <h5 class="title is-5 publication-title">NeurIPS D&B Track 2024</h5> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="text-container" style="margin-bottom: 1rem;">
+      <p style="font-size:20px;">
+        TL;DR: ARTDECO unifies 3D foundation priors with structured scene representations, enabling robust and generalizable 3D reconstruction of diverse real-world scenes using only monocular video. 
+      </p>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline controls height="100%">
+        <source src="./static/videos/teaser_video.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+        <p>Achieving <b>On-the-Fly</b> Reconstruction within a <b>Long Loopback Sequence</b>.</p> 
+        <!-- <p><b>Videos may take a few seconds to load.</b></p> -->
+      </h2>
+    </div>
+  </div>
+</section>
+
+<style>
+.section {
+    padding: 1rem 1.5rem;
+}
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/teaser.png" alt="MY ALT TEXT"/>
+          <br>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            We propose <b>ARTDECO</b>, a unified framework that employs <b>3D foundation models</b> for pose estimation and point prediction, coupled with a Gaussian decoder that transforms multi-scale features into a <b>hierarchical Gaussian representation</b> with a LoD-aware rendering strategy, which improves rendering fidelity while reducing redundancy.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center; margin: 1rem 0;">
+            <img src="static/images/method1.png" alt="MY ALT TEXT"/>
+          </div>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <b>Frontend and backend modules.</b>
+            (a) Frontend: Images are captured from the scene and streamed into the front-end part. 
+            Each incoming frame is aligned with the latest keyframe using a matching module to compute pixel correspondences.
+            Based on the correspondence ratio and pixel displacement, the frame is classified as a keyframe, a mapper frame, or a common frame. The selected frame, along with its pose and point cloud, is then passed to the back-end.
+            (b) Backend: 
+            For each new keyframe, a loop-detection module evaluates its similarity with previous keyframes. If a loop is detected, the most relevant candidates are refined and connected in the factor graph; otherwise, the keyframe is linked only to recent frames. Finally, global pose optimization is performed with Gauss–Newton, and other frames are adjusted accordingly.
+            We instantiate the matching module with MASt3R and the loop-detection module with Pi3.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+        <div class="content has-text-justified">
+          <div style="text-align: center; margin: 1rem 0;">
+            <img src="static/images/method2.png" alt="MY ALT TEXT"/>
+          </div>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <b>Mapping process.</b>
+            When a keyframe or mapper frame arrives from the backend, new Gaussians are added to the scene. 
+            Multi-resolution inputs are analyzed with the Laplacian of Gaussian (LoG) operator to identify regions that require refinement, and new Gaussians are initialized at the corresponding monocular depth positions in the current view. 
+            Common frames are not used to add Gaussians but contribute through gradient-based refinement. 
+            Each primitive stores position, spherical harmonics (SH), base scale, opacity, local feature, dmax, and voxel index vid. 
+            For rendering, the dmax attribute determines whether a Gaussian is included at a given viewing distance, enabling consistent level-of-detail control.          
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/main.png" alt="MY ALT TEXT"/>
+          <img src="static/images/suppl.png" alt="MY ALT TEXT"/>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <b>Qualitative comparisons.</b> against popular on-the-fly reconstruction baselines across diverse 3D scene datasets. ARTDECO consistently preserves high-quality rendering details in complex and diverse environments, particularly in the regions highlighted with colored rectangles.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!--
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+      -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
