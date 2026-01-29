@@ -1,0 +1,596 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="PLANING: A Loosely Coupled Triangle-Gaussian Framework for Streaming 3D Reconstruction">
+  <meta name="keywords" content="PLANING">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PLANING: A Loosely Coupled Triangle-Gaussian Framework for Streaming 3D Reconstruction</title>
+
+
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/git_icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/video-comparison.js"></script>
+
+  <style>
+        .container {
+            width: 80%; 
+            margin: auto; 
+        }
+
+        .responsive-video {
+            width: 45%;
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px; 
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: auto; 
+            height: 300px; 
+        }
+        .rounded-corners {
+    border-radius: 10px; 
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; 
+            width: auto;   
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;         
+            justify-content: center; 
+        }
+        .video-container video {
+            width: 30%;          
+            margin: 5px;          
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 20px; 
+  }
+
+  .fixed-size-video-small {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-two {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-three {
+    width: 500px; 
+            height: 200; 
+  }
+  
+
+  @media screen and (max-width: 768px) {
+
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+
+<style>
+
+
+.row-flex {
+  display: flex;
+  justify-content: center;
+  gap: 200px;  
+  margin-bottom: 40px;
+}
+.flex-item {
+  flex: 1 1 0;
+  max-width: 50%;  
+  min-width: 320px; 
+}
+@media (max-width: 900px) {
+  .flex-item {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+
+</style>
+
+
+<style>
+        .text-container {
+            max-width: 1070px; 
+            margin: 0 auto;    
+            padding: 20px;     
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PLANING: A Loosely Coupled Triangle-Gaussian Framework for Streaming 3D Reconstruction</h1>
+
+            <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://scholar.google.com/citations?hl=en&user=V4miywEAAAAJ">Changjian Jiang*</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=5kW5apkAAAAJ">Kerui Ren*</a><sup>3,2</sup>,</span>
+            <span class="author-block"><a href="https://orcid.org/0009-0003-8355-2491">Xudong Li</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://orcid.org/0009-0007-1199-5380">Kaiwen Song</a><sup>4,2</sup>,</span>
+            
+            <span class="author-block"><a href="https://eveneveno.github.io/lnxu">Linning Xu</a><sup>5,2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=Ch28NiIAAAAJ&hl=en">Tao Lu</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?hl=en&user=dEzL5pAAAAAJ">Junting Dong</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://person.zju.edu.cn/zhangyu/">Yu Zhang†</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://daibo.info/">Bo Dai</a><sup>6</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=w0Od3hQAAAAJ">Mulin Yu†</a><sup>2</sup></span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Zhejiang University</span>,
+            <span class="author-block"><sup>2</sup> Shanghai Artificial Intelligence Laboratory</span>,     
+            <span class="author-block"><sup>3</sup> Shanghai Jiao Tong University</span>,                         
+            <span class="author-block"><sup>4</sup> University of Science and Technology of China</span>,
+            <span class="author-block"><sup>5</sup> The Chinese University of Hong Kong</span>,
+            <span class="author-block"><sup>6</sup> The University of Hong Kong</span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            * denotes equal contribution. † denotes corresponding authors.
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="text-container">
+        <p style="font-size:18px;">
+          TL;DR: <b>PLANING</b> introduces a loosely coupled triangle-Gaussian representation and a monocular streaming framework that jointly achieves accurate geometry, high-fidelity rendering, and efficient planar abstraction for embodied AI applications.
+        </p>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: flex-start; gap: 24px; flex-wrap: wrap; width: 100%;">
+        <video class="fixed-size-video rounded-corners" id="supp video" style="width: 31%; min-width: 280px;" autoplay loop muted playsinline controls>
+          <source src="./static/images/demo.mp4" type="video/mp4">
+        </video>
+        <div class="content has-text-centered" style="width: 35%; min-width: 280px;">
+          <img src="./static/images/teaser.png" style="width: 100%; height: auto;">
+        </div>
+      </div> 
+
+      <div class="text-container">
+        <p style="font-size:18px; width: 95%; margin: auto;">
+          Our design yields a compact yet expressive scene representation, enabling photorealistic rendering and structurally coherent geometry for downstream simulation and robotics applications.
+        </p>  
+      </div>
+    </div>
+  </div>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container carousel-section" style="text-align:center; width: 100%; max-width: 3000px;">
+        <!-- <strong><p style="font-size:17.2px;"> <em>Scaffold-GS</em> rendering results on various types of scenes.
+          Challenging cases including texture-less area, insufficient observations, fine-scale details, view-dependent light effects and multi-scale observations are reasonably handeled.
+   -->
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/1_FAST_LC02.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/2_stairs.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/3_YQ_fish.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/4_SHBG_garden.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/5_SHBG_bunny.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/6_FAST_MB.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/7_FAST_CBD01.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/8_FAST_BSW.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/9_shs_slogan.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/10_shs_zhanting.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/images/videos/11_FAST_LM.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+<br><br>
+
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Method Overview</h2>
+</div>
+
+
+
+<div class="container is-max-desktop">
+
+      <div class="hero-body">
+        <div class="content has-text-centered" style="width: 100%; margin: auto;">
+
+          <img src="./static/images/Method.png"> 
+
+          <p style="text-align: left;">
+            <b>Pipeline of PLANING.</b> PLANING adopts a hybrid representation in which triangles explicitly model scene geometry, while neural Gaussians decoded from these triangles render appearance. Built upon this representation, we develop a streaming reconstruction framework that takes unposed monocular image sequences as input and comprises a frontend for camera tracking, a backend for global pose optimization, and a mapper for scene reconstruction.  Specifically, the mapper incorporates an efficient primitive initialization strategy to reduce redundancy. The recontructed triangle soup further enables efficient planar abstraction, facilitating a range of downstream tasks.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Structure Design</h2>
+  </div>
+
+  <div class="container is-max-desktop">
+  
+        <div class="hero-body">
+          <div class="content" style="width: 100%; margin: auto; display: flex; gap: 60px; justify-content: center;">
+  
+            <div style="flex: 1; text-align: center;">
+              <img src="./static/images/ablation_wo_triangles.png" style="width: 100%; max-width: 100%;"> 
+              <p style="text-align: left; margin-top: 15px;">
+                <b>Triangle Representation.</b> Compared to surfels, our representation produces clearer, opaque surfaces and enables finer rendering details.
+              </p>
+            </div>
+
+            <div style="flex: 1; text-align: center; margin-top: 35px;">
+              <img src="./static/images/ablation_wo_decoupled.png" style="width: 100%; max-width: 100%;"> 
+              <p style="text-align: left; margin-top: 15px;">
+                <b>Hybrid Structure.</b> Our design effectively reduces redundancy and encourages Gaussians to concentrate around the underlying surface. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<br><br>
+
+<section class="hero teaser">
+
+  <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Applications</h2>
+  </div>
+  <br> 
+  
+  <div class="container is-max-desktop">
+  
+    <div class="hero-body">
+      <div class="content has-text-centered">
+  
+        <img src="./static/images/Application2.png" style="margin-bottom: 0px;"> 
+ 
+        <p>
+          <b>Efficient Locomotion Strategy Training.</b> The reconstructed planar scenes serve as high-fidelity, simulation-ready environments that support stable and scalable reinforcement learning for humanoid walking and quadruped stair climbing.
+        </p>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-max-desktop">
+  
+    <div class="hero-body">
+      <div class="content has-text-centered">
+  
+        <img src="./static/images/large_scale_recon.png" style="margin-bottom: 0px;"> 
+ 
+        <p>
+          <b>Large-Scale Scene Reconstruction.</b> Dynamic primitive loading allows efficient large-scale reconstruction beyond GPU memory limits.
+        </p>
+  
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="container is-max-desktop">
+  
+    <div class="hero-body">
+      <div class="content has-text-centered">
+  
+        <img src="./static/images/global_pose_opt.png" style="margin-bottom: 0px; width:90%;"> 
+ 
+        <p>
+          <b>Plane-Guided Camera Pose Optimization.</b> By feeding reconstructed planar structures back into the frontend, we close the loop between mapping and tracking and significantly improve global consistency.
+        </p>
+  
+      </div>
+    </div>
+  </div>
+  
+  <!-- <br><br> -->
+  
+  
+      
+  </section>
+
+
+<section class="hero teaser">
+
+ 
+  
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-full">
+      <h2 class="title is-3">Reconstruction Results</h2>
+      <p style="font-size: 0.95rem; color: #666; margin-top: 0.25rem;">Compact Geometry from Triangles</p>
+    </div>
+  </div>
+  <br>
+
+  
+  <div class="container is-max-desktop">
+  
+    <div class="row-flex">
+      <div class="content has-text-centered flex-item">
+        <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-1" style="font-size: 20px;">
+          <li class="nav-item">
+            <a class="nav-link active" onclick="objectSceneEvent_RE_2DGS(0)" style="font-size: 10px;">e01b287af5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_RE_2DGS(1)" style="font-size: 10px;">1a8e0d78c0</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_RE_2DGS(2)" style="font-size: 10px;">scene0084</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_RE_2DGS(3)" style="font-size: 10px;">scene0217</a>
+          </li>
+        </ul>
+        <div class="b-dics" style="font-weight: 600;">
+          <img src="./static/images/recon_vs_2dgs/e01b287af5_prim_ours.png" alt="Ours (Triangles)">
+          <img src="./static/images/recon_vs_2dgs/e01b287af5_prim_2dgs.png" alt="2DGS* (Mesh)">
+        </div>
+        <strong><p>Representation of scene geometry.</p></strong>
+      </div>
+
+      <div class="content has-text-centered flex-item">
+        <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-2" style="font-size: 20px;">
+          <li class="nav-item">
+            <a class="nav-link active" onclick="objectSceneEvent_Plane_2DGS(0)" style="font-size: 10px;">e01b287af5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_Plane_2DGS(1)" style="font-size: 10px;">1a8e0d78c0</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_Plane_2DGS(2)" style="font-size: 10px;">scene0084</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_Plane_2DGS(3)" style="font-size: 10px;">scene0217</a>
+          </li>
+        </ul>
+        <div class="b-dics" style="font-weight: 600;">
+          <img src="./static/images/plane_vs_2dgs/e01b287af5_plane_ours.png" alt="Ours (Plane)">
+          <img src="./static/images/plane_vs_2dgs/e01b287af5_plane_2dgs.png" alt="2DGS* (Plane)">
+        </div>
+        <strong><p>Plane extraction.</p></strong>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="container is-max-desktop">
+  
+    <div class="row-flex">
+      <div class="content has-text-centered flex-item">
+        <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-3" style="font-size: 20px;">
+          <li class="nav-item">
+            <a class="nav-link active" onclick="objectSceneEvent_RE_PlanarSplatting(0)" style="font-size: 10px;">e01b287af5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_RE_PlanarSplatting(1)" style="font-size: 10px;">1a8e0d78c0</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_RE_PlanarSplatting(2)" style="font-size: 10px;">scene0084</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_RE_PlanarSplatting(3)" style="font-size: 10px;">scene0217</a>
+          </li>
+        </ul>
+        <div class="b-dics" style="font-weight: 600;">
+          <img src="./static/images/recon_vs_planarsplatting/e01b287af5_prim_ours.png" alt="Ours (Triangles)">
+          <img src="./static/images/recon_vs_planarsplatting/e01b287af5_prim_planarsplatting.png" alt="PlanarSplatting (Rectangles)">
+        </div>
+        <strong><p>Representation of scene geometry.</p></strong>
+      </div>
+    
+      <div class="content has-text-centered flex-item">
+        <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-4" style="font-size: 20px;">
+          <li class="nav-item">
+            <a class="nav-link active" onclick="objectSceneEvent_Plane_PlanarSplatting(0)" style="font-size: 10px;">e01b287af5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_Plane_PlanarSplatting(1)" style="font-size: 10px;">1a8e0d78c0</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_Plane_PlanarSplatting(2)" style="font-size: 10px;">scene0084</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent_Plane_PlanarSplatting(3)" style="font-size: 10px;">scene0217</a>
+          </li>
+        </ul>
+        <div class="b-dics" style="font-weight: 600;">
+          <img src="./static/images/plane_vs_planarsplatting/e01b287af5_plane_ours.png" alt="Ours (Plane)">
+          <img src="./static/images/plane_vs_planarsplatting/e01b287af5_plane_planarsplatting.png" alt="PlanarSplatting (Plane)">
+        </div>
+        <strong><p>Plane extraction.</p></strong>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <br>
+      
+  </section>
+
+</section>
+
+<br><br>
+
+<section class="hero teaser">
+
+<div class="columns is-centered has-text-centered">
+  <div class="column is-full">
+    <h2 class="title is-3">Rendering Results</h2>
+    <p style="font-size: 0.95rem; color: #666; margin-top: 0.25rem;">High-Fidelity Rendering from Gaussians</p>
+  </div>
+</div>
+<br> 
+
+<div class="container is-max-desktop">
+
+  <div class="hero-body">
+    <div class="content has-text-centered">
+
+      <img src="./static/images/Main.png" style="margin-bottom: 30px;"> 
+      <!-- <img src="./static/images/Main.png" style="margin-bottom: 0px;">  -->
+      <img src="./static/images/Main_suppl.png"> 
+
+      <p>
+        <b>PLANING</b> outperforms baselines, faithfully reconstructing fine structures and complex planar surfaces, such as wall-mounted mirrors and intricate ceiling ornaments, which existing baselines struggle to capture.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+
+    
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
