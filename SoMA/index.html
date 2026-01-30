@@ -42,20 +42,20 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/icon.png">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="icon" href="./images/icon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script defer src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/index.js"></script>
 </head>
 <body>
 
@@ -148,7 +148,7 @@
     </div>
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline controls height="100%">
-        <source src="./static/videos/demo.mp4"
+        <source src="./videos/demo.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
@@ -172,7 +172,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <img src="static/imgs_png/teaser.png" alt="Teaser"/>
+          <img src="imgs_png/teaser.png" alt="Teaser"/>
           <br>
           <p style="line-height: 1.6; margin-bottom: 1.5rem;">
             Simulating deformable objects under rich interactions remains a fundamental challenge for real-to-sim robot manipulation, with dynamics jointly driven by environmental effects and robot actions. Existing simulators rely on predefined physics or data-driven dynamics without robot-conditioned control, limiting accuracy, stability, and generalization. This paper presents SoMA, a 3D Gaussian Splat simulator for soft-body manipulation. SoMA couples deformable dynamics, environmental forces, and robot joint actions in a unified latent neural space for end-to-end real-to-sim simulation. Modeling interactions over learned Gaussian splats enables controllable, stable long-horizon manipulation and generalization beyond observed trajectories without predefined physical models. SoMA improves resimulation accuracy and generalization on real-world robot manipulation by 20\%, enabling stable simulation of complex tasks such as long-horizon cloth folding.
@@ -190,7 +190,7 @@
         <h2 class="title is-3">Overview of SoMA</h2>
         <div class="content has-text-justified">
           <div style="text-align: center; margin: 1rem 0;">
-            <img src="static/imgs_png/framework.png" alt="SoMA framework"/>
+            <img src="imgs_png/framework.png" alt="SoMA framework"/>
           </div>
           <p style="line-height: 1.6; margin-bottom: 1.5rem;">
             SoMA takes RGB observations and robot joint-space actions collected from real-world manipulation as input (Left). It reconstructs deformable objects as hierarchical Gaussian splats, and propagates them through a neural simulator with supervision from rendering and dynamics (Middle). Object motion is driven by force-based interactions, where environmental and robot-induced forces act on splats to produce deformation (Right). A two-stage multi-resolution training strategy first captures global motion with large temporal gaps and then refines fine-grained dynamics under occlusion and contact using small gaps.
@@ -208,21 +208,21 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Results</h2>
         <div class="content has-text-justified">
-          <img src="static/imgs_png/main_results.png" alt="Qualitative resimulation and generalization under robot manipulation"/>
+          <img src="imgs_png/main_results.png" alt="Qualitative resimulation and generalization under robot manipulation"/>
           <p style="line-height: 1.6; margin-bottom: 1.5rem;">
             <strong>Qualitative resimulation and generalization under robot manipulation.</strong> Left: resimulation on training trajectories. Right: generalization to unseen robot actions and contact configurations. Across diverse soft-body objects, including near-linear (rope), near-planar (cloth), and volumetric (doll) objects, SoMA produces stable, long-horizon simulations that closely match observed dynamics. PhysTwin shows deviations under complex or unseen interactions due to real-to-sim mismatch, while GausSim often remains static or unstable in challenging scenarios.
           </p>
           <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
         </div>
         <div class="content has-text-justified">
-          <img src="static/imgs_png/multiview.png" alt="Multi-view results"/>
+          <img src="imgs_png/multiview.png" alt="Multi-view results"/>
           <p style="line-height: 1.6; margin-bottom: 1.5rem;">
             <strong>Multi-view results</strong> Our method maintains consistent 3D geometric structure and visually accurate, physically plausible dynamics across both the main and side views, demonstrating strong viewpoint-consistent simulation.
           </p>
           <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
         </div>
         <div class="content has-text-justified">
-          <img src="static/imgs_png/main_table.png" alt="Quantitative evaluation on resimulation and generalization under robot manipulation"/>
+          <img src="imgs_png/main_table.png" alt="Quantitative evaluation on resimulation and generalization under robot manipulation"/>
           <p style="line-height: 1.6; margin-bottom: 1.5rem;">
             <strong>Quantitative evaluation on resimulation and generalization under robot manipulation.</strong> We report performance comparisons with PhysTwin and GausSim across image-based and depth-based metrics. Our method achieves the best results across all metrics, demonstrating robust and accurate real-to-sim simulation.
           </p>
@@ -238,7 +238,7 @@
     <div class="content has-text-centered">
       <!--
       <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
+         href="./videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
