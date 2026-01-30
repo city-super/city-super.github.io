@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="description"
+        content="SoMA: : A Real-to-Sim Neural Simulator for Robotic Soft-body Manipulation">
+  <meta name="keywords" content="HumanVid, Human Image Animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoMA: : A Real-to-Sim Neural Simulator for Robotic Soft-body Manipulation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <!-- MathJax for LaTeX support -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SoMA: A Real-to-Sim Neural Simulator for Robotic Soft-body Manipulation</h1>
+          <div class="is-size-4 publication-authors">
+            <!-- <span class="univerity-block" style="color: rgba(0, 0, 0, 0.8);">SIGGRAPH Asia 2025 (ACM TOG)</span> -->
+          </div>
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wrioste.github.io/">Mu Huang</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://hhuiwangg.github.io/">Hui Wang</a><sup>3,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cskrren.github.io/">Kerui Ren</a><sup>3,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://eveneveno.github.io/lnxu/">Linning Xu</a><sup>4,2</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://zhouyunsong.github.io/">Yunsong Zhou</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://mulinyu.github.io/">Mulin Yu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://daibo.info/">Bo Dai</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://oceanpang.github.io/">Jiangmiao Pang</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.75rem;">
+            <span class="author-block"><sup>1</sup>Fudan University, China,</span>
+            <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory, China,</span>
+            <span class="author-block"><sup>3</sup>Shanghai Jiao Tong University, China,</span>
+            <span class="author-block"><sup>4</sup>The Chinese University of Hong Kong, China,</span>
+            <span class="author-block"><sup>5</sup>The University of Hong Kong, China</span>
+          </div>
+          <br>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+              </span>
+              <!-- Huggingface Model Link. -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="text-container" style="margin-bottom: 1rem;">
+      <p style="font-size:20px;">
+        TL;DR: <strong>SoMA</strong> is a <em><span style="color: #0b3d91;">Gaussian splat neural simulator</span></em> that reconstructs and simulates deformable object dynamics from real-world robot manipulation, enabling action-conditioned and stable long-horizon resimulation.
+      </p>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline controls height="100%">
+        <source src="./static/videos/demo.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+        <p>Various manipulation results</p>
+        <!-- <p><b>Videos may take a few seconds to load.</b></p> -->
+      </h2>
+    </div>
+  </div>
+</section>
+
+<style>
+.section {
+    padding: 1rem 1.5rem;
+}
+</style>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <img src="static/imgs_png/teaser.png" alt="Teaser"/>
+          <br>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            Simulating deformable objects under rich interactions remains a fundamental challenge for real-to-sim robot manipulation, with dynamics jointly driven by environmental effects and robot actions. Existing simulators rely on predefined physics or data-driven dynamics without robot-conditioned control, limiting accuracy, stability, and generalization. This paper presents SoMA, a 3D Gaussian Splat simulator for soft-body manipulation. SoMA couples deformable dynamics, environmental forces, and robot joint actions in a unified latent neural space for end-to-end real-to-sim simulation. Modeling interactions over learned Gaussian splats enables controllable, stable long-horizon manipulation and generalization beyond observed trajectories without predefined physical models. SoMA improves resimulation accuracy and generalization on real-world robot manipulation by 20\%, enabling stable simulation of complex tasks such as long-horizon cloth folding.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview of SoMA</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center; margin: 1rem 0;">
+            <img src="static/imgs_png/framework.png" alt="SoMA framework"/>
+          </div>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            SoMA takes RGB observations and robot joint-space actions collected from real-world manipulation as input (Left). It reconstructs deformable objects as hierarchical Gaussian splats, and propagates them through a neural simulator with supervision from rendering and dynamics (Middle). Object motion is driven by force-based interactions, where environmental and robot-induced forces act on splats to produce deformation (Right). A two-stage multi-resolution training strategy first captures global motion with large temporal gaps and then refines fine-grained dynamics under occlusion and contact using small gaps.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <img src="static/imgs_png/main_results.png" alt="Qualitative resimulation and generalization under robot manipulation"/>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <strong>Qualitative resimulation and generalization under robot manipulation.</strong> Left: resimulation on training trajectories. Right: generalization to unseen robot actions and contact configurations. Across diverse soft-body objects, including near-linear (rope), near-planar (cloth), and volumetric (doll) objects, SoMA produces stable, long-horizon simulations that closely match observed dynamics. PhysTwin shows deviations under complex or unseen interactions due to real-to-sim mismatch, while GausSim often remains static or unstable in challenging scenarios.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+        <div class="content has-text-justified">
+          <img src="static/imgs_png/multiview.png" alt="Multi-view results"/>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <strong>Multi-view results</strong> Our method maintains consistent 3D geometric structure and visually accurate, physically plausible dynamics across both the main and side views, demonstrating strong viewpoint-consistent simulation.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+        <div class="content has-text-justified">
+          <img src="static/imgs_png/main_table.png" alt="Quantitative evaluation on resimulation and generalization under robot manipulation"/>
+          <p style="line-height: 1.6; margin-bottom: 1.5rem;">
+            <strong>Quantitative evaluation on resimulation and generalization under robot manipulation.</strong> We report performance comparisons with PhysTwin and GausSim across image-based and depth-based metrics. Our method achieves the best results across all metrics, demonstrating robust and accurate real-to-sim simulation.
+          </p>
+          <!-- <p>Should you have any enquiries, please contact the first author.</p> -->
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!--
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+      -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies's website code</a>.
+          </p>
+          <!-- <p>
+            We thank <a href="https://jixiii.github.io/">Minyue Dai</a> for producing the high-quality demo video.
+            We also thank <a href="https://scholar.google.com.hk/citations?user=rVSzbhUAAAAJ&hl=zh-CN">Yuantao Chen</a> for data support and insightful discussions.
+            Additionally, we thank <a href="https://yang-xijie.github.io/">Xijie Yang</a> for assistance with website design.
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
