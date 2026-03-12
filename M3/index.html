@@ -1,0 +1,377 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="M³: Dense Matching Meets Multi-View Foundation Models for Monocular Gaussian Splatting SLAM">
+  <meta name="keywords" content="SLAM, Gaussian Splatting, M3, ARTDECO, Streaming, Reconstruction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>M³: Dense Matching Meets Multi-View Foundation Models for Monocular Gaussian Splatting SLAM</title>
+
+
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/git_icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/video-comparison.js"></script>
+
+  <style>
+        .container {
+            width: 80%; 
+            margin: auto; 
+        }
+
+        .responsive-video {
+            width: 45%;
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video {
+            width: 940px; 
+            height: auto; 
+        }
+    </style>
+
+    <style>
+        .fixed-size-video-small {
+            width: auto; 
+            height: 300px; 
+        }
+        .rounded-corners {
+    border-radius: 10px; 
+  }
+    </style>
+    <style>
+        .video-container {
+            height: 600px; 
+            width: auto;   
+        }
+    </style>
+    <style>
+        .video-container {
+            display: flex;         
+            justify-content: center; 
+        }
+        .video-container video {
+            width: 30%;          
+            margin: 5px;          
+        }
+    </style>
+
+<style>
+  .video-row {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 20px; 
+  }
+
+  .fixed-size-video-small {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-two {
+    width: 500px; 
+            height: 200; 
+  }
+  .fixed-size-video-small-three {
+    width: 500px; 
+            height: 200; 
+  }
+  
+
+  @media screen and (max-width: 768px) {
+
+    .video-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+
+<style>
+
+
+.row-flex {
+  display: flex;
+  justify-content: center;
+  gap: 200px;  
+  margin-bottom: 40px;
+}
+.flex-item {
+  flex: 1 1 0;
+  max-width: 50%;  
+  min-width: 320px; 
+}
+@media (max-width: 900px) {
+  .flex-item {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+
+</style>
+
+
+<style>
+        .text-container {
+            max-width: 1070px; 
+            margin: 0 auto;    
+            padding: 20px;     
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">M³: Dense Matching Meets Multi-View Foundation Models for Monocular Gaussian Splatting SLAM</h1>
+
+            <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=5kW5apkAAAAJ">Kerui Ren</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=6nkKQDIAAAAJ">Guanghao Li</a><sup>3,4</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=V4miywEAAAAJ">Changjian Jiang</a><sup>2,5</sup>,</span>
+            <span class="author-block"><a href="https://github.com/LeoX0808">Yingxiang Xu</a><sup>6,2</sup>,</span> <br>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=Ch28NiIAAAAJ">Tao Lu</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://eveneveno.github.io/lnxu/">Linning Xu</a><sup>7,2</sup>,</span>
+            <span class="author-block"><a href="https://jtdong.com/">Junting Dong</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://oceanpang.github.io/">Jiangmiao Pang</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=w0Od3hQAAAAJ">Mulin Yu†</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://daibo.info/">Bo Dai†</a><sup>8</sup></span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Shanghai Jiao Tong University</span>,
+            <span class="author-block"><sup>2</sup> Shanghai Artificial Intelligence Laboratory</span>,     
+            <span class="author-block"><sup>3</sup> Fudan University</span>, 
+            <span class="author-block"><sup>4</sup> Shanghai Innovation Institute</span>,                     
+            <span class="author-block"><sup>5</sup> Zhejiang University</span>,
+            <span class="author-block"><sup>6</sup> Beijing Institute of Technology</span>,
+            <span class="author-block"><sup>7</sup> The Chinese University of Hong Kong</span>,
+            <span class="author-block"><sup>8</sup> The University of Hong Kong</span>,
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            † denotes corresponding authors.
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2510.08551"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/InternRobotics/M³"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="text-container">
+        <p style="font-size:20px;">
+          TL;DR: <b>M³</b> is a <b>M</b> Gaussian Splatting SLAM with a <b>M</b>ulti-view foundation model for dense <b>M</b>atching.
+        </p>
+      </div>
+      <video class="fixed-size-video rounded-corners" id="supp video" style="width: 80%; min-width: 280px;" autoplay loop muted playsinline controls>
+        <source src="./static/images/demo.mp4" type="video/mp4">
+      </video>
+       <div class="text-container">
+        <p style="font-size:18px; width: 95%; margin: auto;">
+          Our framework achieves efficient pose estimation and reconstruction for both indoor and outdoor real-world video.
+        </p>  
+      </div>
+    </div>
+  </div>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container" style="text-align:center">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-kitchen">
+          <video poster="" id="5" autoplay controls muted loop playsinline >
+            <source src="./static/videos/s6.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-">
+          <video poster="" id="4" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/s4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-office2">
+          <video poster="" id="6" autoplay controls muted loop playsinline height="100%" >
+            <source src="./static/videos/s3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-workshop">
+          <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/s2.mp4" type="video/mp4">
+          </video>
+        </div> 
+        <div class="item item-workshop">
+          <video poster="" id="3" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/s5.mp4" type="video/mp4">
+          </video>
+        </div> 
+        <div class="item item-peak">
+          <video poster="" id="2" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/s1.mp4" type="video/mp4">
+          </video>
+        </div>     
+      </div>
+    </div>
+  </div>
+</section>
+
+ 
+<br><br>
+
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Method Overview</h2>
+</div>
+
+
+
+<div class="container is-max-desktop">
+  <div class="hero-body">
+    <div class="content has-text-centered" style="width: 100%; margin: auto;">
+
+      <img src="./static/images/Method.png"> 
+
+      <p style="text-align: left; line-height: 1.6; margin-bottom: 3rem;">
+        <b>Pipeline of M³.</b> Our framework consists of joint tracking and global optimization for pose estimation and a mapper for scene reconstruction. For monocular sequences, Pi3X processes retrieved historical keyframes and new frames in one inference to facilitate factor graph construction and keyframe selection. Following the Neural Gaussian and LOD architecture of ARTDECO, Gaussians are initialized via Laplacian norm and optimized jointly with camera poses.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Main Results</h2>
+</div>
+
+<div class="container is-max-desktop">
+  <div class="hero-body">
+    <div class="content has-text-centered" style="width: 100%; margin: auto;">
+
+      <img src="./static/images/Main.png"> 
+
+      <p style="text-align: left; line-height: 1.6; margin-bottom: 3rem;">
+        <b>Qualitative comparisons</b> of rendering against on-the-fly reconstruction baselines across diverse datasets. M³ preserves high-fidelity rendering details in challenging environments, particularly in regions highlighted by white rectangles.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Motion-awared Reconstruction</h2>
+</div>
+
+<div class="container is-max-desktop">
+  <div class="hero-body">
+    <div class="content has-text-centered" style="width: 100%; margin: auto;">
+
+      <img src="./static/images/Dynamic.png"> 
+        
+      <p style="text-align: left; line-height: 1.6; margin-bottom: 3rem;">
+        By detecting dynamic regions, the Motion Map enables moving objects to be excluded from the static reconstruction, thereby improving structural consistency in dynamic scenes.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Compared with Feed-forward methods</h2>
+</div>
+
+<div class="container is-max-desktop">
+  <div class="hero-body">
+    <div class="content has-text-centered" style="width: 100%; margin: auto;">
+
+      <img src="./static/images/FFD.png"> 
+
+      <p style="text-align: left; line-height: 1.6; margin-bottom: 3rem;">
+        <b>Qualitative comparisons of rendering against feed-forward Gaussian Splatting methods. </b> M³ consistently preserves fine-grained visual details.      
+      </p>
+    </div>
+  </div>
+</div>
+
+    
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
